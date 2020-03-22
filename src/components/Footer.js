@@ -25,7 +25,7 @@ function FooterContent({ data }) {
     <Row>
       <Col span={24}>
         <div className="footer-right">
-          Copyright © 2016 - {date.substr(0, 4)} OI Wiki Team
+          Copyright © {date.substr(0, 4)} PKU Scholar Team
         </div>
       </Col>
       <Col span={24}>

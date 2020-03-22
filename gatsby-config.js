@@ -11,8 +11,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: "./docs/",
-        path: "./docs/",
+        name: "paper",
+        path: "./paper/",
       },
     },
     `gatsby-plugin-sharp`,

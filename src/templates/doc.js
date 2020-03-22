@@ -21,11 +21,8 @@ export const query = graphql`
         value
       }
       frontmatter {
-        author
-        tags
+        authors
         title
-        noMeta
-        noComment
       }
       toc: tableOfContents
       parent {

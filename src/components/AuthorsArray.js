@@ -8,15 +8,15 @@ function Header({ num }) {
   if (num > 1) return <span>贡献者们：</span>
 }
 function AuthorsArray({ authors }) {
-  const arr =
-    authors == null ? null : authors == undefined ? null : authors.split(",")
+  const arr = authors;
+    // authors == null ? null : authors == undefined ? null : authors.split(",")
   return (
     <div>
       <Header num={arr ? arr.length : 0}></Header>
       <ChipSet>
         {arr
           ? arr.map(author => (
-              <a href={"https://github.com/" + author.trim()}>
+              <a href={"/author/" + author.trim()}>
                 <Chip label={` ${author} `} key={author}></Chip>{" "}
               </a>
             ))

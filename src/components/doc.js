@@ -6,7 +6,7 @@ function mdx({ data: { mdx }, location }) {
   const headingTitle = mdx.headings[0] && mdx.headings[0].value
   const title = mdx.slug === "/" ? null : mdx.frontmatter.title
   const description = mdx.description || mdx.excerpt
-  const authors = mdx.frontmatter.author || null
+  const authors = mdx.frontmatter.authors || null
   const tags = mdx.frontmatter.tags || null
   const noMeta = mdx.frontmatter.noMeta || "false"
   const hasComment = mdx.frontmatter.hasComment || null

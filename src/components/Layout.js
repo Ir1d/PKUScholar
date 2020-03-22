@@ -52,7 +52,7 @@ function myLayout({
       {!collapsed && isSmallScreen && clickLayer}
       {/* if sider is open, and we are on small screen, show this layer */}
       <Helmet>
-        <title>{title === "OI Wiki" ? title : `${title} - OI Wiki`}</title>
+        <title>{title === "PKU Scholar" ? title : `${title} - PKU Scholar`}</title>
       </Helmet>
       <Header
         sx={{

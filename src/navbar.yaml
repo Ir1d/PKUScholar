@@ -1,7 +1,7 @@
 items:
-  - title: 目录页
-    link: /pages
-  - title: 标签页
-    link: /tags
+  - title: 作者页
+    link: /authors
+  - title: 文章页
+    link: /papers
   - title: GitHub
-    link: https://github.com/OI-Wiki/OI-Wiki
+    link: https://github.com/ir1d/PKUScholar

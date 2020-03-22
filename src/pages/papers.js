@@ -6,7 +6,7 @@ import { Card, Row, Col, Select } from "antd"
 import Helmet from "react-helmet"
 const { Option } = Select
 
-class BlogIndex extends React.Component {
+class Pages extends React.Component {
   data
   location
   children = []
@@ -100,7 +100,7 @@ class BlogIndex extends React.Component {
   }
 }
 export const pageQuery = graphql`
-  query blogIndex {
+  query Pages {
     allMdx {
       edges {
         node {
@@ -121,4 +121,4 @@ export const pageQuery = graphql`
     }
   }
 `
-export default BlogIndex
+export default Pages

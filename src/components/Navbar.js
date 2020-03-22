@@ -71,7 +71,7 @@ class Navbar extends React.Component {
                 fontSize: "22px",
               }}
             >
-              OI Wiki
+              PKU Scholar
             </Link>
             <Menu
               sx={{ float: "right" }}
@@ -80,19 +80,12 @@ class Navbar extends React.Component {
               mode="horizontal"
               className={"hide-nav-on-xs"}
             >
-              <Menu.Item key="menu-search">
-                <Search
-                  placeholder="键入进行搜索"
-                  onSearch={value => /*console.log(value)*/ value}
-                  sx={theme.styles.search}
-                />
-              </Menu.Item>
 
               <SubMenu
                 title={
                   <span className="submenu-title-wrapper">
                     <EditFilled />
-                    学习文档
+                    分类浏览
                     <CaretDownFilled />
                   </span>
                 }

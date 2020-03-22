@@ -8,7 +8,20 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // remote CMS you could also check to see if the parent node was a
   // `File` node here
   if (node.internal.type === "Mdx") {
+    // console.log(node)
     const value = createFilePath({ node, getNode })
+    // if (node.fileAbsolutePath.indexOf("author") > -1)
+    //   createNodeField({
+    //     // Name of the field you are adding
+    //     name: "slug",
+    //     // Individual MDX node
+    //     node,
+    //     // Generated value based on filepath with "blog" prefix. you
+    //     // don't need a separating "/" before the value because
+    //     // createFilePath returns a path with the leading "/".
+    //     value: `/author${value}`,
+    //   })
+    // else
     createNodeField({
       // Name of the field you are adding
       name: "slug",
@@ -17,8 +30,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       // Generated value based on filepath with "blog" prefix. you
       // don't need a separating "/" before the value because
       // createFilePath returns a path with the leading "/".
-      value: `${value}`,
-    })
+      value: `/paper${value}`,
+    }) 
   }
 }
 
@@ -67,11 +80,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
   const docTemplate = path.resolve("src/templates/doc.js")
-  const tagTemplate = path.resolve("src/templates/tags.js")
+  const authorTemplate = path.resolve("src/templates/authors.js")
 
   const result = await graphql(`
     {
-      postsRemark: allMdx(
+      papers: allMdx(
         sort: { order: DESC, fields: [frontmatter___title] }
         limit: 2000
       ) {
@@ -82,13 +95,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             }
             id
             frontmatter {
-              tags
+              authors
             }
           }
         }
       }
-      tagsGroup: allMdx(limit: 2000) {
-        group(field: frontmatter___tags) {
+      authorsGroup: allMdx(limit: 2000) {
+        group(field: frontmatter___authors) {
           fieldValue
         }
       }
@@ -101,12 +114,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
-  const posts = result.data.postsRemark.edges
+  const papers = result.data.papers.edges
   // console.log(posts)
   // Create post detail pages
-  posts.forEach(({ node }, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1]
-    const next = index === 0 ? null : posts[index - 1]
+  papers.forEach(({ node }, index) => {
+    const previous = index === papers.length - 1 ? null : papers[index + 1]
+    const next = index === 0 ? null : papers[index - 1]
     createPage({
       path: node.fields.slug,
       component: docTemplate,
@@ -119,15 +132,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   })
 
   // Extract tag data from query
-  const tags = result.data.tagsGroup.group
+  const author = result.data.authorsGroup.group
 
   // Make tag pages
-  tags.forEach(tag => {
+  author.forEach(author => {
     createPage({
-      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
-      component: tagTemplate,
+      path: `/author/${_.kebabCase(author.fieldValue)}/`,
+      component: authorTemplate,
       context: {
-        tag: tag.fieldValue,
+        author: author.fieldValue,
       },
     })
   })

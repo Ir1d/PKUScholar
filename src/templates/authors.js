@@ -6,18 +6,18 @@ import { Link, graphql } from "gatsby"
 import Helmet from "react-helmet"
 import Layout from "../components/Layout"
 
-const Tags = ({ pageContext, data, location }) => {
-  const { tag } = pageContext
+const Authors = ({ pageContext, data, location }) => {
+  const { author } = pageContext
   const { edges, totalCount } = data.allMdx
-  const tagHeader = `${totalCount} post${
+  const authorHeader = `${totalCount} post${
     totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+  } are from "${author}"`
 
   return (
     <Layout location={location} noMeta="true">
-      <Helmet title={` ${tag} - 标签页 - PKU Scholar`}></Helmet>
+      <Helmet title={` ${author} - 作者页 - PKU Scholar`}></Helmet>
       <div>
-        <h1>{tagHeader}</h1>
+        <h1>{authorHeader}</h1>
         <ul>
           {edges.map(({ node }) => {
             const { slug } = node.fields
@@ -33,15 +33,15 @@ const Tags = ({ pageContext, data, location }) => {
               This links to a page that does not yet exist.
               You'll come back to it!
             */}
-        <Link to="/tags">All tags</Link>
+        <Link to="/authors">All authors</Link>
       </div>
     </Layout>
   )
 }
 
-Tags.propTypes = {
+Authors.propTypes = {
   pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
   }),
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
@@ -62,14 +62,14 @@ Tags.propTypes = {
   }),
 }
 
-export default Tags
+export default Authors
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($author: String) {
     allMdx(
       limit: 2000
       sort: { fields: [frontmatter___title], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { authors: { in: [$author] } } }
     ) {
       totalCount
       edges {
