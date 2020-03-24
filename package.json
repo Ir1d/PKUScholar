@@ -26,7 +26,7 @@
     "gatsby-plugin-mdx": "^1.0.83",
     "gatsby-plugin-offline": "^3.0.41",
     "gatsby-plugin-react-helmet": "^3.1.24",
-    "gatsby-plugin-sharp": "^2.4.13",
+    "gatsby-plugin-sharp": "^2.5.3",
     "gatsby-plugin-theme-ui": "^0.3.0",
     "gatsby-remark-autolink-headers": "^2.1.26",
     "gatsby-remark-copy-linked-files": "^2.1.40",
