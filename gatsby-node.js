@@ -10,18 +10,28 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === "Mdx") {
     // console.log(node)
     const value = createFilePath({ node, getNode })
+    const parent = getNode(node.parent);
+
+    if (parent.internal.type === "File") {
+      createNodeField({
+        name: `sourceName`,
+        node,
+        value: parent.sourceInstanceName
+      });
+    }
     // if (node.fileAbsolutePath.indexOf("author") > -1)
-    //   createNodeField({
-    //     // Name of the field you are adding
-    //     name: "slug",
-    //     // Individual MDX node
-    //     node,
-    //     // Generated value based on filepath with "blog" prefix. you
-    //     // don't need a separating "/" before the value because
-    //     // createFilePath returns a path with the leading "/".
-    //     value: `/author${value}`,
-    //   })
-    // else
+    if (parent.sourceInstanceName === 'author')
+      createNodeField({
+        // Name of the field you are adding
+        name: "slug",
+        // Individual MDX node
+        node,
+        // Generated value based on filepath with "blog" prefix. you
+        // don't need a separating "/" before the value because
+        // createFilePath returns a path with the leading "/".
+        value: `/author${value}`,
+      })
+    else
     createNodeField({
       // Name of the field you are adding
       name: "slug",
@@ -32,6 +42,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       // createFilePath returns a path with the leading "/".
       value: `/paper${value}`,
     }) 
+ 
   }
 }
 
@@ -80,13 +91,29 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
   const docTemplate = path.resolve("src/templates/doc.js")
-  const authorTemplate = path.resolve("src/templates/authors.js")
+  const authorTemplate = path.resolve("src/templates/authorPage.js")
+  const tagTemplate = path.resolve("src/templates/tags.js")
 
   const result = await graphql(`
     {
       papers: allMdx(
         sort: { order: DESC, fields: [frontmatter___title] }
         limit: 2000
+        filter: {fields: {sourceName: {eq: "paper"}}}
+      ) {
+        edges {
+          node {
+            fields {
+              slug
+            }
+            id
+          }
+        }
+      }
+      authors: allMdx(
+        sort: { order: DESC, fields: [frontmatter___title] }
+        limit: 2000
+        filter: {fields: {sourceName: {eq: "author"}}}
       ) {
         edges {
           node {
@@ -95,13 +122,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             }
             id
             frontmatter {
-              authors
+              en_name
             }
           }
         }
       }
-      authorsGroup: allMdx(limit: 2000) {
-        group(field: frontmatter___authors) {
+      tagsGroup: allMdx(limit: 2000) {
+        group(field: frontmatter___tags) {
           fieldValue
         }
       }
@@ -131,19 +158,38 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
 
-  // Extract tag data from query
-  const author = result.data.authorsGroup.group
-
-  // Make tag pages
-  author.forEach(author => {
+  const authors = result.data.authors.edges
+  // console.log(authors)
+  // Create post detail pages
+  authors.forEach(({ node }, index) => {
+    // console.log(node.frontmatter.en_name)
+    const previous = index === authors.length - 1 ? null : authors[index + 1]
+    const next = index === 0 ? null : authors[index - 1]
     createPage({
-      path: `/author/${_.kebabCase(author.fieldValue)}/`,
+      path: node.fields.slug,
       component: authorTemplate,
       context: {
-        author: author.fieldValue,
+        id: node.id,
+        en_name: node.frontmatter.en_name,
+        previous,
+        next,
       },
     })
   })
+
+  const tags = result.data.tagsGroup.group
+
+  // Make tag pages
+  tags.forEach(tag => {
+    createPage({
+      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      component: tagTemplate,
+      context: {
+        tag: tag.fieldValue,
+      },
+    })
+  })
+
 
   if (result.errors) {
     reporter.panic(result.errors)

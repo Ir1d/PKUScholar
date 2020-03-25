@@ -15,6 +15,13 @@ module.exports = {
         path: "./paper/",
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "author",
+        path: "./author/",
+      },
+    },
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
