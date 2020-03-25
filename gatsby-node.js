@@ -10,17 +10,17 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === "Mdx") {
     // console.log(node)
     const value = createFilePath({ node, getNode })
-    const parent = getNode(node.parent);
+    const parent = getNode(node.parent)
 
     if (parent.internal.type === "File") {
       createNodeField({
         name: `sourceName`,
         node,
-        value: parent.sourceInstanceName
-      });
+        value: parent.sourceInstanceName,
+      })
     }
     // if (node.fileAbsolutePath.indexOf("author") > -1)
-    if (parent.sourceInstanceName === 'author')
+    if (parent.sourceInstanceName === "author")
       createNodeField({
         // Name of the field you are adding
         name: "slug",
@@ -32,17 +32,16 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         value: `/author${value}`,
       })
     else
-    createNodeField({
-      // Name of the field you are adding
-      name: "slug",
-      // Individual MDX node
-      node,
-      // Generated value based on filepath with "blog" prefix. you
-      // don't need a separating "/" before the value because
-      // createFilePath returns a path with the leading "/".
-      value: `/paper${value}`,
-    }) 
- 
+      createNodeField({
+        // Name of the field you are adding
+        name: "slug",
+        // Individual MDX node
+        node,
+        // Generated value based on filepath with "blog" prefix. you
+        // don't need a separating "/" before the value because
+        // createFilePath returns a path with the leading "/".
+        value: `/paper${value}`,
+      })
   }
 }
 
@@ -99,7 +98,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       papers: allMdx(
         sort: { order: DESC, fields: [frontmatter___title] }
         limit: 2000
-        filter: {fields: {sourceName: {eq: "paper"}}}
+        filter: { fields: { sourceName: { eq: "paper" } } }
       ) {
         edges {
           node {
@@ -113,7 +112,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       authors: allMdx(
         sort: { order: DESC, fields: [frontmatter___title] }
         limit: 2000
-        filter: {fields: {sourceName: {eq: "author"}}}
+        filter: { fields: { sourceName: { eq: "author" } } }
       ) {
         edges {
           node {
@@ -189,7 +188,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       },
     })
   })
-
 
   if (result.errors) {
     reporter.panic(result.errors)

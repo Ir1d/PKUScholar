@@ -17,7 +17,9 @@ const AuthorsPage = ({ data, location }) => {
         <ul>
           {group.map(author => (
             <li key={author.frontmatter.en_name}>
-              <Link to={`/author/${author.frontmatter.en_name}/`}>{author.frontmatter.cn_name}</Link>
+              <Link to={`/author/${author.frontmatter.en_name}/`}>
+                {author.frontmatter.cn_name}
+              </Link>
             </li>
           ))}
         </ul>

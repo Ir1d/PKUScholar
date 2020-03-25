@@ -101,7 +101,7 @@ class Pages extends React.Component {
 }
 export const pageQuery = graphql`
   query Pages {
-    allMdx(filter: {fields: {sourceName: {eq: "paper"}}}) {
+    allMdx(filter: { fields: { sourceName: { eq: "paper" } } }) {
       edges {
         node {
           id

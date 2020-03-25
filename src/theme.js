@@ -303,7 +303,7 @@ export default {
     },
     search: {
       width: 200,
-      mt: 200,  
+      mt: 200,
       mb: 200,
     },
   },

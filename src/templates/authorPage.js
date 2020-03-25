@@ -22,7 +22,11 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
       <Helmet title={` ${en_name} - 作者页 - PKU Scholar`}></Helmet>
       <div>
         <h1>{en_name}</h1>
-        <AuthorIntro intro={intro} cn_name={cn_name} img_url={img_url}></AuthorIntro>
+        <AuthorIntro
+          intro={intro}
+          cn_name={cn_name}
+          img_url={img_url}
+        ></AuthorIntro>
         <AuthorPapers papers={data.curPaper} cn_name={cn_name}></AuthorPapers>
         <Link to="/authors">All authors</Link>
       </div>
@@ -57,7 +61,7 @@ export default Authors
 
 export const pageQuery = graphql`
   query($id: String, $en_name: String) {
-    mdx: mdx(id: { eq: $id }, fields: {sourceName: {eq: "author"}}) {
+    mdx: mdx(id: { eq: $id }, fields: { sourceName: { eq: "author" } }) {
       id
       fields {
         slug
@@ -84,7 +88,10 @@ export const pageQuery = graphql`
     curPaper: allMdx(
       limit: 2000
       sort: { fields: [frontmatter___title], order: DESC }
-      filter: { frontmatter: { authors: { in: [$en_name] } }, fields: {sourceName: {eq: "paper"} } }
+      filter: {
+        frontmatter: { authors: { in: [$en_name] } }
+        fields: { sourceName: { eq: "paper" } }
+      }
     ) {
       totalCount
       edges {

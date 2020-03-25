@@ -12,7 +12,6 @@ const { SubMenu } = Menu
 const { Search } = Input
 import Link from "../components/Link"
 
-
 class BlogIndex extends React.Component {
   data
   location
@@ -40,27 +39,23 @@ class BlogIndex extends React.Component {
   }
   render() {
     return (
-      <Layout location={this.location} noMeta="true" >
+      <Layout location={this.location} noMeta="true">
         <Helmet title="PKU Scholar"></Helmet>
         <h2>Welcome to PKU Scholar </h2>
         <div>
           <ul>
             <li>
-              <Link to="/papers" >
-              Papers
-              </Link>
+              <Link to="/papers">Papers</Link>
             </li>
             <li>
-              <Link to="/authors" >
-              Authors
-              </Link>
+              <Link to="/authors">Authors</Link>
             </li>
           </ul>
         </div>
         <Search
           placeholder="键入进行搜索"
           onSearch={value => /*console.log(value)*/ value}
-          style={{"margin-top": 50, "margin-bottom": 300}}
+          style={{ "margin-top": 50, "margin-bottom": 300 }}
         />
       </Layout>
     )

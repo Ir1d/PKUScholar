@@ -80,7 +80,6 @@ class Navbar extends React.Component {
               mode="horizontal"
               className={"hide-nav-on-xs"}
             >
-
               <SubMenu
                 title={
                   <span className="submenu-title-wrapper">
