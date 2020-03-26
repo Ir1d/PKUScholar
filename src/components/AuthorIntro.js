@@ -3,7 +3,7 @@ import { jsx } from "theme-ui"
 import { Avatar, Row, Col, Card } from "antd"
 import { ChipSet, Chip } from "@material/react-chips"
 
-function AuthorIntro({ cn_name, intro, img_url, citedby }) {
+function AuthorIntro({ cn_name, intro, img_url, citedby, homePage }) {
   return (
     <div>
       <Row>
@@ -29,7 +29,7 @@ function AuthorIntro({ cn_name, intro, img_url, citedby }) {
           >
             <ChipSet>
               {intro
-                ? intro.map(item =>
+                ? intro.map((item, index) =>
                     item.indexOf("个人主页") > -1 ? (
                       // 去掉 intro 里面的个人主页，因为和 homepage 字段重复了
                       ""
@@ -39,13 +39,20 @@ function AuthorIntro({ cn_name, intro, img_url, citedby }) {
                           .trim()
                           .replace(/\\r/g, "")
                           .replace(/\\n/g, "")} `}
-                        key={item}
+                        key={index}
                       ></Chip>
                     )
                   )
                 : ""}
               {citedby !== "" ? (
-                <Chip label={"总引用：" + citedby} key={citedby}></Chip>
+                <Chip label={"总引用：" + citedby} key={"citation"}></Chip>
+              ) : (
+                ""
+              )}
+              {homePage !== "" ? (
+                <a href={homePage} target="_blank" >
+                <Chip label={"学院主页：" + homePage} key={"homePage"}></Chip>
+                </a>
               ) : (
                 ""
               )}

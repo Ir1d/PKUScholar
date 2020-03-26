@@ -12,11 +12,11 @@ function AuthorIntro({ papers, cn_name, publicationTitles }) {
     <div>
       <h2>{authorHeader}</h2>
       <ul>
-        {edges.map(({ node }) => {
+        {edges.map(({ node }, index) => {
           const { slug } = node.fields
           const { title } = node.frontmatter
           return (
-            <li key={slug}>
+            <li key={index}>
               <Link to={slug}>{title}</Link>
             </li>
           )
@@ -24,8 +24,8 @@ function AuthorIntro({ papers, cn_name, publicationTitles }) {
       </ul>
       <h2>待收录 paper：</h2>
       <ul>
-        {publicationTitles.map(title => {
-          return <li key={title}>{title}</li>
+        {publicationTitles.map((title, index) => {
+          return <li key={index}>{title}</li>
         })}
       </ul>
     </div>

@@ -7,6 +7,7 @@ import Helmet from "react-helmet"
 import Layout from "../components/Layout"
 import AuthorIntro from "../components/AuthorIntro"
 import AuthorPapers from "../components/AuthorPapers"
+import Meta from "../components/Meta"
 
 const Authors = ({ pageContext, data, curPaper, location }) => {
   const { en_name } = pageContext
@@ -14,12 +15,14 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
   // console.log(data)
   const cn_name = mdx.frontmatter.cn_name || ""
   const img_url = mdx.frontmatter.img_url || ""
-  const homepage = mdx.frontmatter.homepage || ""
+  const homePage = mdx.frontmatter.homepage || ""
   const intro = mdx.frontmatter.intro || ""
   const publicationTitles = mdx.frontmatter.publicationTitles || ""
   const google_info = mdx.frontmatter.google_info || ""
   const affiliation = google_info.affiliation || ""
   const citedby = google_info.citedby || ""
+  const relativePath = mdx.parent.relativePath || ""
+  const modifiedTime = mdx.parent.modifiedTime || ""
   // console.log(google_info)
   return (
     <Layout location={location} noMeta="true">
@@ -31,13 +34,21 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
           cn_name={cn_name}
           img_url={img_url}
           citedby={citedby}
+          homePage={homePage}
         ></AuthorIntro>
         <AuthorPapers
           papers={data.curPaper}
           cn_name={cn_name}
           publicationTitles={publicationTitles}
         ></AuthorPapers>
-        <Link to="/authors">All authors</Link>
+        <Link to="/authors">Click to see authors list</Link>
+        <Meta authors={""}
+              tags={""}
+              relativePath={relativePath}
+              modifiedTime={modifiedTime}
+              noMeta={"false"}
+              prefix={"author/"}
+              ></Meta>
       </div>
     </Layout>
   )

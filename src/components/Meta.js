@@ -6,14 +6,14 @@ import Tags from "./Tags"
 import { MdBuild, MdCopyright, MdEdit } from "react-icons/md"
 import theme from "../theme"
 
-function Meta({ authors, tags, relativePath, modifiedTime, noMeta }) {
-  const editURL = "https://github.com/OI-wiki/OI-wiki/edit/master/"
-  const historyURL = "https://github.com/OI-wiki/OI-wiki/commits/master/"
+function Meta({ authors, tags, relativePath, modifiedTime, noMeta, prefix="paper/" }) {
+  const editURL = "https://github.com/Ir1d/PKUScholar/edit/master/" + prefix
+  const historyURL = "https://github.com/Ir1d/PKUScholar/commits/master/" + prefix
   if (noMeta == "false") {
     return (
       <Card sx={{ lineHeights: theme.lineHeights.body }}>
-        <AuthorsArray authors={authors} />
-        <Tags tags={tags} />
+        {authors !== "" ? <AuthorsArray authors={authors} /> : ""}
+        {tags !== "" ? <Tags tags={tags} /> : ""}
         <div
           sx={{
             borderLeft: "5px solid #ff1700",

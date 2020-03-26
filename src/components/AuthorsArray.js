@@ -3,9 +3,9 @@ import { jsx } from "theme-ui"
 import { ChipSet, Chip } from "@material/react-chips"
 
 function Header({ num }) {
-  if (num <= 0) return <span>本页面未记录贡献者</span>
-  if (num == 1) return <span>贡献者：</span>
-  if (num > 1) return <span>贡献者们：</span>
+  if (num <= 0) return <span>本页面未记录作者</span>
+  if (num == 1) return <span>作者：</span>
+  if (num > 1) return <span>作者们：</span>
 }
 function AuthorsArray({ authors }) {
   const arr = authors

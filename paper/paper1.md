@@ -1,5 +1,5 @@
 ---
-authors: ["a", "b", "c", "chenlijun", "caoyongzhi"]
+authors: ["a", "b", "c", "chenlijun", "caoyongzhi", "dengzhihong"]
 tags: ["CV"]
 title: "paper1"
 wtf: {"a": "b", "c": "d"}
