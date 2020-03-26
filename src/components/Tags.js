@@ -17,7 +17,7 @@ function Tags({ tags }) {
       <ChipSet>
         {arr
           ? arr.map(tag => (
-              <a href={"/tags/" + _.kebabCase(tag)} key={`tag-${tag}`}>
+              <a href={"/tag/" + _.kebabCase(tag)} key={`tag-${tag}`}>
                 <Chip label={`tag-item`} label={` ${tag} `}></Chip>
               </a>
             ))

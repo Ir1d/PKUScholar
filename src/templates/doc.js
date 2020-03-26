@@ -23,6 +23,7 @@ export const query = graphql`
       frontmatter {
         authors
         title
+        tags
       }
       toc: tableOfContents
       parent {
