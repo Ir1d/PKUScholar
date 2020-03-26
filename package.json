@@ -29,7 +29,7 @@
     "gatsby-plugin-sharp": "^2.4.13",
     "gatsby-plugin-theme-ui": "^0.3.0",
     "gatsby-remark-autolink-headers": "^2.1.26",
-    "gatsby-remark-copy-linked-files": "^2.1.40",
+    "gatsby-remark-copy-linked-files": "^2.2.1",
     "gatsby-remark-images": "^3.1.50",
     "gatsby-remark-table-of-contents": "0.0.9",
     "gatsby-remark-vscode": "^2.0.3",
