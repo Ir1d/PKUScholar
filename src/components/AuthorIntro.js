@@ -50,8 +50,8 @@ function AuthorIntro({ cn_name, intro, img_url, citedby, homePage }) {
                 ""
               )}
               {homePage !== "" ? (
-                <a href={homePage} target="_blank" >
-                <Chip label={"学院主页：" + homePage} key={"homePage"}></Chip>
+                <a href={homePage} target="_blank">
+                  <Chip label={"学院主页：" + homePage} key={"homePage"}></Chip>
                 </a>
               ) : (
                 ""

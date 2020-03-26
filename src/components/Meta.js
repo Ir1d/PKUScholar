@@ -6,9 +6,17 @@ import Tags from "./Tags"
 import { MdBuild, MdCopyright, MdEdit } from "react-icons/md"
 import theme from "../theme"
 
-function Meta({ authors, tags, relativePath, modifiedTime, noMeta, prefix="paper/" }) {
+function Meta({
+  authors,
+  tags,
+  relativePath,
+  modifiedTime,
+  noMeta,
+  prefix = "paper/",
+}) {
   const editURL = "https://github.com/Ir1d/PKUScholar/edit/master/" + prefix
-  const historyURL = "https://github.com/Ir1d/PKUScholar/commits/master/" + prefix
+  const historyURL =
+    "https://github.com/Ir1d/PKUScholar/commits/master/" + prefix
   if (noMeta == "false") {
     return (
       <Card sx={{ lineHeights: theme.lineHeights.body }}>

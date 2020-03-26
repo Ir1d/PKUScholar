@@ -42,13 +42,14 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
           publicationTitles={publicationTitles}
         ></AuthorPapers>
         <Link to="/authors">Click to see authors list</Link>
-        <Meta authors={""}
-              tags={""}
-              relativePath={relativePath}
-              modifiedTime={modifiedTime}
-              noMeta={"false"}
-              prefix={"author/"}
-              ></Meta>
+        <Meta
+          authors={""}
+          tags={""}
+          relativePath={relativePath}
+          modifiedTime={modifiedTime}
+          noMeta={"false"}
+          prefix={"author/"}
+        ></Meta>
       </div>
     </Layout>
   )
