@@ -16,18 +16,23 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
   const img_url = mdx.frontmatter.img_url || ""
   const homepage = mdx.frontmatter.homepage || ""
   const intro = mdx.frontmatter.intro || ""
-  // const google_info = mdx.frontmatter.google_info || ""
+  const publicationTitles = mdx.frontmatter.publicationTitles || ""
+  const google_info = mdx.frontmatter.google_info || ""
+  const affiliation = google_info.affiliation || ""
+  const citedby = google_info.citedby || ""
+  // console.log(google_info)
   return (
     <Layout location={location} noMeta="true">
-      <Helmet title={` ${en_name} - 作者页 - PKU Scholar`}></Helmet>
+      <Helmet title={` ${cn_name} - PKU Scholar`}></Helmet>
       <div>
-        <h1>{en_name}</h1>
+        <h1>{cn_name}</h1>
         <AuthorIntro
           intro={intro}
           cn_name={cn_name}
           img_url={img_url}
+          citedby={citedby}
         ></AuthorIntro>
-        <AuthorPapers papers={data.curPaper} cn_name={cn_name}></AuthorPapers>
+        <AuthorPapers papers={data.curPaper} cn_name={cn_name} publicationTitles={publicationTitles}></AuthorPapers>
         <Link to="/authors">All authors</Link>
       </div>
     </Layout>
@@ -76,6 +81,7 @@ export const pageQuery = graphql`
           citedby
           citedby5y
         }
+        publicationTitles
       }
       toc: tableOfContents
       parent {

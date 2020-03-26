@@ -7,7 +7,7 @@ import Layout from "../components/Layout"
 import Link from "../components/Link"
 
 const AuthorsPage = ({ data, location }) => {
-  console.log(data)
+  // console.log(data)
   const group = data.allMdx.nodes
   return (
     <Layout location={location} noMeta="true">

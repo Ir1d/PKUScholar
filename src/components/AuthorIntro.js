@@ -3,13 +3,13 @@ import { jsx } from "theme-ui"
 import { Avatar, Row, Col, Card } from "antd"
 import { ChipSet, Chip } from "@material/react-chips"
 
-function AuthorIntro({ cn_name, intro, img_url }) {
+function AuthorIntro({ cn_name, intro, img_url, citedby }) {
   return (
     <div>
       <Row>
         <Col span={18}>
           <Card
-            title={cn_name}
+            // title={cn_name}
             headStyle={{ fontSize: "1rem" }}
             bodyStyle={{ fontSize: "16px" }}
             sx={{
@@ -34,10 +34,16 @@ function AuthorIntro({ cn_name, intro, img_url }) {
                       // 去掉 intro 里面的个人主页，因为和 homepage 字段重复了
                       ""
                     ) : (
-                      <Chip label={` ${item} `} key={item}></Chip>
+                      <Chip
+                        label={` ${item.trim().replace(/\\r/g, "").replace(/\\n/g, "")} `}
+                        key={item}
+                      ></Chip>
                     )
                   )
                 : ""}
+              {
+                citedby !== ""? (<Chip label={"总引用：" + citedby} key={citedby}></Chip>):""
+              }
             </ChipSet>
           </Card>
         </Col>
