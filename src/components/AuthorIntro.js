@@ -35,15 +35,20 @@ function AuthorIntro({ cn_name, intro, img_url, citedby }) {
                       ""
                     ) : (
                       <Chip
-                        label={` ${item.trim().replace(/\\r/g, "").replace(/\\n/g, "")} `}
+                        label={` ${item
+                          .trim()
+                          .replace(/\\r/g, "")
+                          .replace(/\\n/g, "")} `}
                         key={item}
                       ></Chip>
                     )
                   )
                 : ""}
-              {
-                citedby !== ""? (<Chip label={"总引用：" + citedby} key={citedby}></Chip>):""
-              }
+              {citedby !== "" ? (
+                <Chip label={"总引用：" + citedby} key={citedby}></Chip>
+              ) : (
+                ""
+              )}
             </ChipSet>
           </Card>
         </Col>

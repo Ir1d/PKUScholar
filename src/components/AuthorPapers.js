@@ -24,12 +24,8 @@ function AuthorIntro({ papers, cn_name, publicationTitles }) {
       </ul>
       <h2>待收录 paper：</h2>
       <ul>
-        {publicationTitles.map(( title ) => {
-          return (
-            <li key={title}>
-              {title}
-            </li>
-          )
+        {publicationTitles.map(title => {
+          return <li key={title}>{title}</li>
         })}
       </ul>
     </div>

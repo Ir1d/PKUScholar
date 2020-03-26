@@ -32,7 +32,11 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
           img_url={img_url}
           citedby={citedby}
         ></AuthorIntro>
-        <AuthorPapers papers={data.curPaper} cn_name={cn_name} publicationTitles={publicationTitles}></AuthorPapers>
+        <AuthorPapers
+          papers={data.curPaper}
+          cn_name={cn_name}
+          publicationTitles={publicationTitles}
+        ></AuthorPapers>
         <Link to="/authors">All authors</Link>
       </div>
     </Layout>
