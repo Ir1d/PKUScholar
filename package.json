@@ -35,7 +35,7 @@
     "gatsby-remark-vscode": "^2.0.3",
     "gatsby-source-filesystem": "^2.1.55",
     "gatsby-source-local-git": "^0.2.2",
-    "gatsby-transformer-sharp": "^2.3.19",
+    "gatsby-transformer-sharp": "^2.4.3",
     "hast-util-to-text": "^1.0.1",
     "material-ui": "^0.20.2",
     "mdast-util-toc": "^5.0.2",
