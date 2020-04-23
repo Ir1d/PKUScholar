@@ -1,27 +1,30 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-import { ChipSet, Chip } from "@material/react-chips"
+import Chip from '@material-ui/core/Chip'
+import { makeStyles } from '@material-ui/core/styles'
+import React from 'react'
 
-function Header({ num }) {
+const useStyles = makeStyles((theme) => ({
+  chip: {
+    margin: theme.spacing(0.5),
+  },
+}))
+
+function Header ({ num }) {
   if (num <= 0) return <span>本页面未记录作者</span>
   if (num == 1) return <span>作者：</span>
   if (num > 1) return <span>作者们：</span>
 }
-function AuthorsArray({ authors }) {
+function AuthorsArray ({ authors, authors_key }) {
   const arr = authors
+  const classes = useStyles()
   // authors == null ? null : authors == undefined ? null : authors.split(",")
   return (
     <div>
       <Header num={arr ? arr.length : 0}></Header>
-      <ChipSet>
-        {arr
-          ? arr.map(author => (
-              <a href={"/author/" + author.trim()}>
-                <Chip label={` ${author} `} key={author}></Chip>{" "}
-              </a>
-            ))
-          : ""}
-      </ChipSet>
+      {arr
+        ? arr.map((author, idx) => (
+          <Chip label={` ${author} `} clickable href={'/author/' + authors_key[idx].trim()} key={author} className={classes.chip} component={'a'} variant="outlined"></Chip>
+        ))
+        : ''}
     </div>
   )
 }

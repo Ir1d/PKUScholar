@@ -1,68 +1,81 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-import { Card } from "antd"
-import AuthorsArray from "./AuthorsArray"
-import Tags from "./Tags"
-import { MdBuild, MdCopyright, MdEdit } from "react-icons/md"
-import theme from "../theme"
+import Divider from '@material-ui/core/Divider'
+import Paper from '@material-ui/core/Paper'
+import { makeStyles } from '@material-ui/core/styles'
+import CopyrightIcon from '@material-ui/icons/Copyright'
+import EditIcon from '@material-ui/icons/Edit'
+import HistoryIcon from '@material-ui/icons/History'
+import React from 'react'
 
-function Meta({
+import AuthorsArray from './AuthorsArray'
+import Link from './Link'
+import Tags from './Tags'
+
+const useStyles = makeStyles((theme) => ({
+  metaicon: {
+    verticalAlign: 'text-top',
+  },
+  paper: {
+    padding: theme.spacing(2),
+  },
+  divider: {
+    marginTop: '8px',
+    marginBottom: '8px',
+  },
+  meta: {
+    margin: '20px 0',
+    paddingLeft: '.5rem',
+    textDecoration: 'none',
+  },
+}))
+
+function Meta ({
   authors,
+  authors_key,
   tags,
   relativePath,
   modifiedTime,
   noMeta,
-  prefix = "paper/",
+  prefix = 'paper/',
 }) {
-  const editURL = "https://github.com/Ir1d/PKUScholar/edit/master/" + prefix
+  const editURL = 'https://github.com/Ir1d/PKUScholar/edit/master/' + prefix
   const historyURL =
-    "https://github.com/Ir1d/PKUScholar/commits/master/" + prefix
-  if (noMeta == "false") {
+    'https://github.com/Ir1d/PKUScholar/commits/master/' + prefix
+  const classes = useStyles()
+  if (noMeta == 'false') {
     return (
-      <Card sx={{ lineHeights: theme.lineHeights.body }}>
-        {authors !== "" ? <AuthorsArray authors={authors} /> : ""}
-        {tags !== "" ? <Tags tags={tags} /> : ""}
-        <div
-          sx={{
-            borderLeft: "5px solid #ff1700",
-            margin: "20px 0",
-            paddingLeft: "1.5rem",
-          }}
-        >
+      <Paper className={classes.paper} variant="outlined">
+        {authors !== '' ? <AuthorsArray authors={authors} authors_key={authors_key} /> : ''}
+        <Divider className={classes.divider} />
+        {tags !== '' ? <Tags tags={tags} /> : ''}
+        <div className={classes.meta}>
           <span>
-            <MdBuild />
+            <HistoryIcon fontSize="small" className={classes.metaicon} />
             本页面最近更新：
           </span>
-          <span className="facts_modified">{modifiedTime}</span>，
-          <a className="edit_history" href={historyURL + relativePath}>
-            更新历史
-          </a>
+          <span>{modifiedTime}</span>，
+          <Link href={historyURL + relativePath}>更新历史</Link>
           <br />
           <span>
-            <MdEdit />
-            发现错误？想一起完善？{" "}
-            <a
-              href={editURL + relativePath}
-              title="编辑此页"
-              className="page_edit_url"
-            >
+            <EditIcon fontSize="small" className={classes.metaicon} />
+            发现错误？想一起完善？{' '}
+            <Link href={editURL + relativePath} title="编辑此页">
               在 GitHub 上编辑此页！
-            </a>
+            </Link>
           </span>
           <br />
           <span>
-            <MdCopyright />
-            本页面的全部内容在{" "}
+            <CopyrightIcon fontSize="small" className={classes.metaicon} />
+            本页面的全部内容在{' '}
             <strong>
-              <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">
+              <Link href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">
                 CC BY-SA 4.0
-              </a>{" "}
-              和 <a href="https://github.com/zTrix/sata-license">SATA</a>
-            </strong>{" "}
+              </Link>{' '}
+              和 <Link href="https://github.com/zTrix/sata-license">SATA</Link>
+            </strong>{' '}
             协议之条款下提供，附加条款亦可能应用
           </span>
         </div>
-      </Card>
+      </Paper>
     )
   } else return <div></div>
 }

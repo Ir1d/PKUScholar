@@ -1,28 +1,28 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 // Components
-import { Link, graphql } from "gatsby"
-import Helmet from "react-helmet"
-import Layout from "../components/Layout"
-import AuthorIntro from "../components/AuthorIntro"
-import AuthorPapers from "../components/AuthorPapers"
-import Meta from "../components/Meta"
+import { Link, graphql } from 'gatsby'
+import Helmet from 'react-helmet'
+import Layout from '../components/Layout'
+import AuthorIntro from '../components/AuthorIntro'
+import AuthorPapers from '../components/AuthorPapers'
+import Meta from '../components/Meta'
 
 const Authors = ({ pageContext, data, curPaper, location }) => {
   const { en_name } = pageContext
   const mdx = data.mdx
   // console.log(data)
-  const cn_name = mdx.frontmatter.cn_name || ""
-  const img_url = mdx.frontmatter.img_url || ""
-  const homePage = mdx.frontmatter.homepage || ""
-  const intro = mdx.frontmatter.intro || ""
-  const publicationTitles = mdx.frontmatter.publicationTitles || ""
-  const google_info = mdx.frontmatter.google_info || ""
-  const affiliation = google_info.affiliation || ""
-  const citedby = google_info.citedby || ""
-  const relativePath = mdx.parent.relativePath || ""
-  const modifiedTime = mdx.parent.modifiedTime || ""
+  const cn_name = mdx.frontmatter.cn_name || ''
+  const img_url = mdx.frontmatter.img_url || ''
+  const homePage = mdx.frontmatter.homepage || ''
+  const intro = mdx.frontmatter.intro || ''
+  const publicationTitles = mdx.frontmatter.publicationTitles || ''
+  const google_info = mdx.frontmatter.google_info || ''
+  const affiliation = google_info.affiliation || ''
+  const citedby = google_info.citedby || ''
+  const relativePath = mdx.parent.relativePath || ''
+  const modifiedTime = mdx.parent.modifiedTime || ''
   // console.log(google_info)
   return (
     <Layout location={location} noMeta="true">
@@ -43,12 +43,12 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
         ></AuthorPapers>
         <Link to="/authors">Click to see authors list</Link>
         <Meta
-          authors={""}
-          tags={""}
+          authors={''}
+          tags={''}
           relativePath={relativePath}
           modifiedTime={modifiedTime}
-          noMeta={"false"}
-          prefix={"author/"}
+          noMeta={'false'}
+          prefix={'author/'}
         ></Meta>
       </div>
     </Layout>
@@ -111,7 +111,7 @@ export const pageQuery = graphql`
       limit: 2000
       sort: { fields: [frontmatter___title], order: DESC }
       filter: {
-        frontmatter: { authors: { in: [$en_name] } }
+        frontmatter: { authors_key: { in: [$en_name] } }
         fields: { sourceName: { eq: "paper" } }
       }
     ) {

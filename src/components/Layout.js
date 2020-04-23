@@ -1,28 +1,100 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-import theme from "../theme"
-//Components
-import Navbar from "./Navbar"
-import Toc from "./Toc"
-import Meta from "./Meta"
-import FooterContent from "./Footer"
-import Loadable from "react-loadable"
-import { Layout, Card, BackTop } from "antd"
-import { Helmet } from "react-helmet"
-import "antd/dist/antd.css"
-import { useState } from "react"
+import Button from '@material-ui/core/Button'
+import grey from '@material-ui/core/colors/grey'
+import Container from '@material-ui/core/Container'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Divider from '@material-ui/core/Divider'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import Grid from '@material-ui/core/Grid'
+import IconButton from '@material-ui/core/IconButton'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import Tooltip from '@material-ui/core/Tooltip'
+import Typography from '@material-ui/core/Typography'
+import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import EditIcon from '@material-ui/icons/Edit'
+import Loadable from 'react-loadable'
+import BackTop from './BackTop'
+import Footer from './Footer'
+import Link from './Link'
+import Meta from './Meta'
+import NavAndDrawer from './NavAndDrawer'
+import ToC from './Toc'
 
-const { Header, Content, Footer, Sider } = Layout
+const editWarning = (
+  <DialogContentText>
+    <p>首先，感谢您能够为 PKU Scholar 做出自己的贡献。</p>
+    <p>
+      不过在开始之前，我们需要您了解并熟知
+      <Link to={'https://oi-wiki.com/intro/htc/'}>如何参与</Link>
+      里的内容，以避免在编辑时产生不必要的麻烦。
+    </p>
+    <p>在阅读完之后，请点击下方的按钮，然后开始编辑。</p>
+  </DialogContentText>
+)
+const useStyles = makeStyles(theme => ({
+  toolbar: {
+    [theme.breakpoints.down('md')]: {
+      minHeight: 64,
+    },
+    minHeight: 48 + 64,
+    alignItems: 'flex-start',
+  },
+  content: {
+    flexGrow: 1,
+    width: '100%',
+    overflow: 'inherit',
+  },
+  main: {
+    padding: theme.spacing(5),
+    [theme.breakpoints.down('md')]: {
+      padding: theme.spacing(2),
+    },
+    minHeight: '100vh',
+    overflow: 'inherit',
+  },
+  divider: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+  footer: {
+    background: grey[200],
+    color: grey[700],
+    padding: theme.spacing(3),
+    // [theme.breakpoints.up('lg')]: {
+    //   marginLeft: 250,
+    // },
+  },
+  container: {
+    // [theme.breakpoints.up('lg')]: {
+    //   marginLeft: 250,
+    // },
+    overflowX: 'auto',
+    overflowY: 'hidden',
+  },
+  iconButton: {
+    float: 'right',
+  },
+}))
 
-const LazySider = Loadable({
-  loader: () => import("./Sidebar"),
+const LazyComment = Loadable({
+  loader: () => import('./Comment'),
+  // eslint-disable-next-line react/display-name
   loading: () => <div />,
 })
 
-function myLayout({
+function myLayout ({
   children,
   location,
   authors,
+  authors_key,
   title,
   description,
   tags,
@@ -30,97 +102,142 @@ function myLayout({
   relativePath,
   modifiedTime,
   noMeta,
+  noComment,
+  noEdit,
+  noToC,
+  overflow,
+  hasSearch,
 }) {
-  const isSSR = typeof window === "undefined"
-  const isSmallScreen = !isSSR && window.innerWidth < 1200
-  let [collapsed, setCollapsed] = useState(isSmallScreen)
-  const clickLayer = (
-    <div
-      sx={{
-        position: "fixed",
-        zIndex: 2,
-        height: "100%",
-        width: "100%",
-        background: "rgba(0, 0, 0, .60)",
-        display: ["block", null, null, "none"],
+  const classes = useStyles()
+  const theme = useTheme()
+  // const pageTitle = title === 'OI Wiki' ? title : `${title} - OI Wiki`
+  const displayToC = toc && toc.items && noToC !== 'true'
+  const gridWidthMdUp = overflow === 'true' ? 12 : 12
+  const displaySearch = hasSearch === undefined ? true : hasSearch
+  const editURL = 'https://github.com/OI-wiki/OI-wiki/edit/master/docs/'
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const descriptionRes =
+    description ||
+    'OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛'
+  const EditingDialog = (
+    <Dialog
+      open={dialogOpen}
+      onClose={() => {
+        setDialogOpen(false)
       }}
-      onClick={() => setCollapsed(true)}
-    />
+    >
+      <DialogTitle>{'编辑前须知'}</DialogTitle>
+      <DialogContent>{editWarning}</DialogContent>
+      <DialogActions>
+        <Button
+          onClick={() => {
+            setDialogOpen(false)
+          }}
+        >
+          取消
+        </Button>
+        <Button
+          component="a"
+          href={editURL + relativePath}
+          target="_blank"
+          rel="noopener nofollow"
+          onClick={() => {
+            setDialogOpen(false)
+          }}
+        >
+          开始编辑
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
   return (
-    <Layout>
-      {!collapsed && isSmallScreen && clickLayer}
-      {/* if sider is open, and we are on small screen, show this layer */}
+    <>
+      <CssBaseline />
       <Helmet>
-        <title>
-          {title === "PKU Scholar" ? title : `${title} - PKU Scholar`}
-        </title>
+        <title>{`${title === 'OI Wiki' ? '' : title + ' - '}OI Wiki`}</title>
+        <meta name="description" content={descriptionRes} />
       </Helmet>
-      <Header
-        sx={{
-          position: "fixed",
-          zIndex: "20",
-          width: "100%",
-          height: 48,
-          lineHeight: "48px",
-          background: "#fff",
-          padding: "0px",
-        }}
-      >
-        <Navbar toggleSider={() => setCollapsed(!collapsed)} />
-      </Header>
-      <Layout sx={theme.layout.www}>
-        <LazySider
-          sx={theme.layout.sidebar}
-          pathname={location.pathname}
-          breakpoint="xl"
-          onBreakpoint={broken =>
-            broken ? setCollapsed(true) : setCollapsed(false)
-          }
-          collapsed={collapsed}
-          trigger={null}
-        />
-
-        <Layout sx={theme.layout.main}>
-          <Content>
-            <Card
-              title={title}
-              headStyle={{ fontSize: "2.5rem" }}
-              bodyStyle={{ fontSize: "16px" }}
-              sx={{
-                padding: "0 24px",
-                p: {
-                  lineHeight: "2rem",
-                },
-                ol: {
-                  lineHeight: "2rem",
-                },
-                ul: {
-                  lineHeight: "2rem",
-                },
-                color: "#304455",
-              }}
-              bordered={false}
-            >
-              {children}
-            </Card>
-            <Meta
-              authors={authors}
-              tags={tags}
-              relativePath={relativePath}
-              modifiedTime={modifiedTime}
-              noMeta={noMeta}
-            ></Meta>
-            <BackTop></BackTop>
-          </Content>
-        </Layout>
-
-        <Toc toc={toc} sx={theme.layout.toc} key={location.key} />
-      </Layout>
-      <Footer sx={theme.layout.footer} className="oiFooter">
-        <FooterContent />
-      </Footer>
-    </Layout>
+      {EditingDialog}
+      <NavAndDrawer pathname={location.pathname} hasSearch={displaySearch}/>
+      <Grid container>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={gridWidthMdUp}
+          lg={gridWidthMdUp}
+          xl={gridWidthMdUp}
+        >
+          <div className={classes.toolbar} />
+          <div className={classes.container}>
+            <main className={classes.content}>
+              <div className={classes.main}>
+                <Grid container spacing={2}>
+                  <Grid item xs>
+                    <Typography variant="h4" component="h1">
+                      {title}
+                    </Typography>
+                  </Grid>
+                  {noEdit === 'false' && (
+                    <Grid item xs={1}>
+                      <Tooltip title="编辑页面" placement="left" arrow>
+                        <IconButton
+                          onClick={() => setDialogOpen(true)}
+                          className={classes.iconButton}
+                        >
+                          <EditIcon fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+                    </Grid>
+                  )}
+                </Grid>
+                {authors && <Divider className={classes.divider} />}
+                <Typography variant="body1" component="div">
+                  {children}
+                </Typography>
+                <Meta
+                  authors={authors}
+                  authors_key={authors_key}
+                  tags={tags}
+                  relativePath={relativePath}
+                  modifiedTime={modifiedTime}
+                  noMeta={noMeta}
+                ></Meta>
+                {noComment === 'false' && (
+                  <div style={{ width: '100%', marginTop: theme.spacing(2) }}>
+                    <ExpansionPanel variant={'outlined'}>
+                      <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="comment"
+                      >
+                        <Typography className={classes.heading}>
+                          评论
+                        </Typography>
+                      </ExpansionPanelSummary>
+                      <ExpansionPanelDetails>
+                        <Container>
+                          <LazyComment title={title} />
+                        </Container>
+                      </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                  </div>
+                )}
+              </div>
+            </main>
+          </div>
+        </Grid>
+        {displayToC && (
+          <Grid item xs>
+            <ToC toc={toc} pathname={location.pathname} />
+          </Grid>
+        )}
+      </Grid>
+      <Divider />
+      <div className={classes.footer}>
+        <Footer />
+      </div>
+      <BackTop />
+    </>
   )
 }
 

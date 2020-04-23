@@ -1,107 +1,181 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/Layout"
-import Tags from "../components/Tags"
-import { Card, Row, Col, Select } from "antd"
-import Helmet from "react-helmet"
-const { Option } = Select
+import { useMediaQuery } from '@material-ui/core'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Grid from '@material-ui/core/Grid'
+import { useTheme } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import match from 'autosuggest-highlight/match'
+import parse from 'autosuggest-highlight/parse'
+import { graphql } from 'gatsby'
+import React, { useState } from 'react'
 
-class Pages extends React.Component {
-  data
-  location
-  children = []
-  posts
-  group
-  constructor(props) {
-    super(props)
-    this.state = {
-      selectedKeys: [],
-    }
-    this.data = props.data
-    this.location = props.location
-    const { edges: posts, group } = this.data.allMdx
-    this.posts = posts
-    this.group = group
-    this.group.forEach(tag => {
-      this.children.push(<Option key={tag.fieldValue}>{tag.fieldValue}</Option>)
-    })
+import Layout from '../components/Layout'
+import Link from '../components/Link'
+import Tags from '../components/Tags'
+
+function PageItem (props) {
+  const {
+    id,
+    frontmatter: { title, tags },
+    fields: { slug: link },
+  } = props
+  return (
+    <Grid item key={id}>
+      <Card variant={'outlined'}>
+        <CardContent>
+          <Typography variant="h6" component={Link} to={link}>
+            {title}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Tags tags={tags} />
+        </CardActions>
+      </Card>
+    </Grid>
+  )
+}
+
+function matchTags (pageTags, selectedTags) {
+  if (selectedTags.length === 0) return true
+  if (!pageTags) return false
+  const matchTag = (tags, selected) => {
+    return tags.includes(selected)
   }
-  handleChange(value) {
-    this.setState({
-      selectedKeys: value,
-    })
-  }
-  render() {
+  const res = selectedTags.map((selected) => matchTag(pageTags, selected))
+  return res.every((v) => v === true)
+}
+
+function GridItems (props) {
+  const theme = useTheme()
+  const { filteredItems } = props
+  let columnCount
+  const upXL = useMediaQuery(theme.breakpoints.up('lg'))
+  const upSmall = useMediaQuery(theme.breakpoints.up('sm'))
+  if (upXL) {
+    columnCount = 3
     return (
-      <Layout location={this.location} noMeta="true">
-        <Helmet title="目录页 - OI Wiki"></Helmet>
-        <h1>按标签筛选页面：</h1>
-        <Select
-          mode="multiple"
-          style={{ width: "100%" }}
-          placeholder="请选择，留空展示所有页面"
-          defaultValue={[]}
-          onChange={this.handleChange.bind(this)}
-        >
-          {this.children}
-        </Select>
-        <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
-          {this.posts.map(({ node: post }) => {
-            let allKeys = [...this.state.selectedKeys]
-            let isSelected
-            let tags = post.frontmatter.tags || []
-            if (allKeys === []) {
-              isSelected = true
-            } else {
-              isSelected = allKeys
-                .map(x =>
-                  tags.reduce((prev, curr) => prev || curr === x, false)
-                )
-                .reduce((prev, curr) => prev && curr, true)
-            }
-            if (!isSelected) return <div key={post.id} />
-            else
-              return (
-                <Col
-                  xs={24}
-                  sm={12}
-                  md={12}
-                  lg={8}
-                  xl={8}
-                  xxl={4}
-                  key={post.id}
-                >
-                  <Card
-                    title={
-                      <a
-                        href={post.fields.slug}
-                        sx={{
-                          ":hover": {
-                            color: "#1E90FF",
-                            textDecoration: "none",
-                          },
-                          color: "black",
-                        }}
-                      >
-                        {" "}
-                        {post.frontmatter.title || "本页面没有标题"}{" "}
-                      </a>
-                    }
-                    bordered={true}
-                  >
-                    <Tags tags={tags} />
-                  </Card>
-                </Col>
-              )
-          })}
-        </Row>
-      </Layout>
+      <>
+        <Grid container item xs direction={'column'} spacing={2}>
+          {filteredItems.map(
+            (x, idx) =>
+              idx % columnCount === 0 && <PageItem key={x.id} {...x} />,
+          )}
+        </Grid>
+        <Grid container item xs direction={'column'} spacing={2}>
+          {filteredItems.map(
+            (x, idx) =>
+              idx % columnCount === 1 && <PageItem key={x.id} {...x} />,
+          )}
+        </Grid>
+        <Grid container item xs direction={'column'} spacing={2}>
+          {filteredItems.map(
+            (x, idx) =>
+              idx % columnCount === 2 && <PageItem key={x.id} {...x} />,
+          )}
+        </Grid>
+      </>
+    )
+  } else if (upSmall) {
+    columnCount = 2
+    return (
+      <>
+        <Grid container item xs direction={'column'} spacing={2}>
+          {filteredItems.map(
+            (x, idx) =>
+              idx % columnCount === 0 && <PageItem key={x.id} {...x} />,
+          )}
+        </Grid>
+        <Grid container item xs direction={'column'} spacing={2}>
+          {filteredItems.map(
+            (x, idx) =>
+              idx % columnCount === 1 && <PageItem key={x.id} {...x} />,
+          )}
+        </Grid>
+      </>
+    )
+  } else {
+    columnCount = 1
+    return (
+      <>
+        <Grid container item direction={'column'} spacing={2}>
+          {filteredItems.map((x) => (
+            <PageItem key={x.id} {...x} />
+          ))}
+        </Grid>
+      </>
     )
   }
 }
+
+function BlogIndex (props) {
+  const { location } = props
+  const {
+    data: {
+      allMdx: { edges, group },
+    },
+  } = props
+  const articles = edges.map((x) => x.node)
+  const tags = group.map(({ fieldValue }) => fieldValue)
+  const [selectedTags, setSelectedTags] = useState([])
+  const filteredItems = articles
+    .map((x) => matchTags(x.frontmatter.tags, selectedTags) && x)
+    .filter((x) => x !== false)
+  return (
+    <Layout
+      location={location}
+      noMeta={'true'}
+      noEdit={'true'}
+      noToC={'true'}
+      overflow={'true'}
+      title={'目录页'}
+    >
+      <Grid container spacing={2} justify={'center'}>
+        <Grid item xs={12}>
+          <Autocomplete
+            value={selectedTags}
+            onChange={(_, v) => {
+              setSelectedTags(v)
+            }}
+            multiple
+            options={tags}
+            disableCloseOnSelect
+            filterSelectedOptions
+            getOptionLabel={(option) => option}
+            renderOption={(option, { inputValue }) => {
+              const matches = match(option, inputValue)
+              const parts = parse(option, matches)
+              return parts.map((part, index) => (
+                <span
+                  key={index}
+                  style={{ fontWeight: part.highlight ? 700 : 400 }}
+                >
+                  {part.text}
+                </span>
+              ))
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                placeholder="键入以按标签搜索..."
+              />
+            )}
+          />
+        </Grid>
+        <Grid container xs={12} spacing={2} justify={'center'}>
+          <GridItems filteredItems={filteredItems} />
+        </Grid>
+      </Grid>
+    </Layout>
+  )
+}
+
 export const pageQuery = graphql`
-  query Pages {
-    allMdx(filter: { fields: { sourceName: { eq: "paper" } } }) {
+  query papersIndex {
+    allMdx(filter: { fields: { sourceName: { eq: "paper" } } } limit: 20) {
       edges {
         node {
           id
@@ -121,4 +195,4 @@ export const pageQuery = graphql`
     }
   }
 `
-export default Pages
+export default BlogIndex

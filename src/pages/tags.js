@@ -1,10 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import kebabCase from "lodash/kebabCase"
-import { graphql } from "gatsby"
-import Layout from "../components/Layout"
-import Link from "../components/Link"
+import React from 'react'
+import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
+import kebabCase from 'lodash/kebabCase'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import Link from '../components/Link'
 
 const TagsPage = ({
   data: {
@@ -39,7 +39,7 @@ TagsPage.propTypes = {
         PropTypes.shape({
           fieldValue: PropTypes.string.isRequired,
           totalCount: PropTypes.number.isRequired,
-        }).isRequired
+        }).isRequired,
       ),
     }),
     site: PropTypes.shape({

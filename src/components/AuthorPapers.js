@@ -1,10 +1,7 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-import Link from "./Link"
-import { Avatar, Row, Col, Card } from "antd"
-import { ChipSet, Chip } from "@material/react-chips"
+import Link from './Link'
+import React from 'react'
 
-function AuthorIntro({ papers, cn_name, publicationTitles }) {
+function AuthorPapers ({ papers, cn_name, publicationTitles }) {
   const { edges, totalCount } = papers
   const authorHeader = `我们收录了 "${cn_name}" 的 ${totalCount} 篇 paper：`
   // console.log(publicationTitles)
@@ -22,7 +19,7 @@ function AuthorIntro({ papers, cn_name, publicationTitles }) {
           )
         })}
       </ul>
-      <h2>待收录 paper：</h2>
+      <h2>Google Scholar 收录情况：{publicationTitles.length} 篇 </h2>
       <ul>
         {publicationTitles.map((title, index) => {
           return <li key={index}>{title}</li>
@@ -32,4 +29,4 @@ function AuthorIntro({ papers, cn_name, publicationTitles }) {
   )
 }
 
-export default AuthorIntro
+export default AuthorPapers

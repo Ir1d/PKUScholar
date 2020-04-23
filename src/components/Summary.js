@@ -1,58 +1,57 @@
-/** @jsx jsx */
-import { Link as GatsbyLink } from "gatsby"
-import { jsx } from "theme-ui"
-import { MdEdit, MdExpandMore } from "react-icons/md"
+import { ExpansionPanelSummary } from '@material-ui/core'
+import blue from '@material-ui/core/colors/blue'
+import { makeStyles } from '@material-ui/core/styles'
+import EditIcon from '@material-ui/icons/Edit'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import React from 'react'
 
-export default function({ className = null, children, ...props }) {
-  if (className.match("note")) {
-    return (
-      <summary
-        className={className}
-        {...props}
-        sx={{
-          margin: "0 -0.6rem",
-          padding: ".2rem .6rem .2rem 1rem",
-          borderBottom: ".05rem solid rgba(68,138,255,.1)",
-          backgroundColor: "rgba(68,138,255,.1)",
-          fontWeight: 700,
-          outline: "none",
-          cursor: "pointer",
-          p: {
-            display: "inline-block",
-            margin: 0,
-            fontSize: "14px",
-          },
-          svg: {
-            fontSize: "20px",
-          },
-          "::-webkit-details-marker": {
-            display: "none",
-          },
-        }}
-      >
-        <MdEdit
-          sx={{
-            verticalAlign: "-4px",
-            marginTop: "7px",
-            mr: "0.6rem",
-          }}
-        />
-        {children}
-        <MdExpandMore
-          className="expand-more-icon"
-          sx={{
-            verticalAlign: "-4px",
-            marginTop: "7px",
-            ml: "1rem",
-            float: "right",
-          }}
-        />
-      </summary>
-    )
-  }
+const useStyles = makeStyles((theme) => ({
+  expanded: {}, // DONT DELETE THIS
+  root: {
+    background: blue[50],
+    minHeight: '36px',
+    '&$expanded': {
+      minHeight: '36px',
+      height: 'auto',
+    },
+    height: 'auto',
+  },
+  expandIcon: {
+    padding: '2px',
+    '&$expanded': {
+      padding: '2px',
+    },
+  },
+  content: {
+    margin: '4px',
+    '& p': {
+      margin: '4px',
+    },
+    '&$expanded': {
+      margin: '4px',
+    },
+    fontWeight: 'bold',
+  },
+}))
+
+export default function Summary ({ className = null, children, ...props }) {
+  const classes = useStyles()
+
   return (
-    <summary className={className} {...props}>
+    <ExpansionPanelSummary
+      classes={classes}
+      expandIcon={<ExpandMoreIcon />}
+      aria-controls="expand"
+      {...props}
+    >
+      <EditIcon
+        style={{
+          margin: '0px 10px 2px -5px',
+          alignSelf: 'center',
+          color: blue[500],
+        }}
+      />
       {children}
-    </summary>
+    </ExpansionPanelSummary>
   )
 }

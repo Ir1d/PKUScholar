@@ -1,33 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import Tags from '../components/Tags'
-// import { Card, Row, Col, Select, Menu, Input } from 'antd'
-import Helmet from 'react-helmet'
-// import theme from '../theme'
-import Link from '../components/Link'
-// const { Option } = Select
-// const { SubMenu } = Menu
-// const { Search } = Input
 import Backdrop from '@material-ui/core/Backdrop'
 import grey from '@material-ui/core/colors/grey'
 import Dialog from '@material-ui/core/Dialog'
 import IconButton from '@material-ui/core/IconButton'
-import TextField from '@material-ui/core/TextField'
+import InputBase from '@material-ui/core/InputBase'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Paper from '@material-ui/core/Paper'
-import Divider from '@material-ui/core/Divider'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import FindInPageIcon from '@material-ui/icons/FindInPage'
 import clsx from 'clsx'
-
+import React, { useState, useEffect, useRef } from 'react'
 import SearchIcon from '@material-ui/icons/Search'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import lightBlue from '@material-ui/core/colors/lightBlue'
 
 import scrollbarStyle from '../styles/scrollbar'
 
@@ -67,21 +54,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '9px',
     marginBottom: '6px',
   },
-  divider: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
   inputInput: {
     // vertical padding + font size from searchIcon
-    width: '100%',
-    // width: '100vw',
-    // [theme.breakpoints.up('md')]: {
-    //   // transition: theme.transitions.create('width'),
-    //   // '&:focus': {
-    //   //   width: '30vw',
-    //   // },
+    // width: '100%',
+    [theme.breakpoints.up('md')]: {
+      transition: theme.transitions.create('width'),
+      width: '15vw',
+      '&:focus': {
+        width: '30vw',
+      },
 
-    // },
+    },
     [`&::-webkit-search-decoration,
        &::-webkit-search-cancel-button,
        &::-webkit-search-results-button,
@@ -90,18 +73,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   resultPaper: scrollbarStyle(theme, {
-    marginLeft: '50px',
     marginTop: '12px',
-    width: '98%',
-    // minWidth: `calc(30vw + 1em + ${theme.spacing(4)}px)`,
-    // maxWidth: '50vw',
-    // position: 'absolute',
-    // right: '0 !important',
+    minWidth: `calc(30vw + 1em + ${theme.spacing(4)}px)`,
+    maxWidth: '50vw',
+    position: 'absolute',
+    right: '0 !important',
     top: '100%',
-    // maxHeight: '80vh',
+    maxHeight: '80vh',
     overflowY: 'auto',
     overflowX: 'hidden',
-    zIndex: theme.zIndex.drawer - 10,
+    zIndex: theme.zIndex.drawer + 2,
   }),
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -109,11 +90,11 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    // maxWidth: `calc(30vw + 1em + ${theme.spacing(4)}px)`,
-    marginRight: theme.spacing(7),
+    maxWidth: `calc(30vw + 1em + ${theme.spacing(4)}px)`,
+    marginRight: theme.spacing(2),
     marginLeft: 0,
-    // width: '100%',
-    zIndex: theme.zIndex.drawer - 2,
+    width: '100%',
+    zIndex: theme.zIndex.drawer + 2,
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(3),
       width: 'auto',
@@ -136,8 +117,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
-    display: 'none',
-    // display: 'flex',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -171,24 +151,6 @@ const useStyles = makeStyles((theme) => ({
     '-webkit-border-radius': '0',
     '-moz-border-radius': '0',
     'border-radius': '0',
-  },
-  example: {
-    display: 'block',
-    marginLeft: '20px',
-    marginTop: '20px',
-    marginBottom: '20px',
-
-    color: lightBlue[500],
-    textDecoration: 'none',
-    ':hover': {
-      textDecoration: 'none',
-    },
-    '&.active': {
-      color: theme.palette.text.primary,
-    },
-  },
-  paperRoot: {
-    marginTop: '20px',
   },
 }))
 
@@ -295,7 +257,7 @@ function useWindowDimensions () {
   return windowDimensions
 }
 
-function Search ({ backdrop }) {
+function Result ({ backdrop }) {
   const [searchKey, setSearchKey] = useState('')
   const [result, setResult] = useState([])
   const [open, setOpen] = useState(false)
@@ -343,13 +305,13 @@ function Search ({ backdrop }) {
         <div
           className={clsx(
             classes.search,
-            classes.searchColorWhite,
+            open ? classes.searchColorWhite : classes.searchColorBlack,
           )}
         >
           <div className={classes.searchIcon}>
             <SearchIcon fontSize="small" />
           </div>
-          <TextField
+          <InputBase
             type="search"
             placeholder="键入以开始搜索"
             onChange={(ev) => {
@@ -362,8 +324,6 @@ function Search ({ backdrop }) {
               root: classes.inputRoot,
               input: classes.inputInput,
             }}
-            variant="outlined"
-            fullWidth
             defaultValue={searchKey}
           />
           {open && (
@@ -377,6 +337,13 @@ function Search ({ backdrop }) {
             </Paper>
           )}
         </div>
+        {hasBackDrop && <Backdrop
+          className={classes.backdrop}
+          open={open}
+          onClick={() => {
+            setOpen(false)
+          }}
+        />}
       </>
     )
   } else {
@@ -405,7 +372,7 @@ function Search ({ backdrop }) {
 
             </IconButton>
             {/* </div> */}
-            <TextField
+            <InputBase
               type="search"
               placeholder="键入以开始搜索"
               onChange={(ev) => {
@@ -419,8 +386,6 @@ function Search ({ backdrop }) {
                 input: classes.inputInput,
               }}
               autoFocus
-              variant="outlined"
-              fullWidth
               defaultValue={searchKey}
             />
           </Paper>
@@ -437,85 +402,4 @@ function Search ({ backdrop }) {
     )
   }
 }
-
-//
-function BlogIndex ({
-  data,
-  location,
-  children = [],
-  posts,
-  group,
-}) {
-  const classes = useStyles()
-  return (
-    <Layout location={location} noMeta="true" hasSearch={false}>
-      <Helmet title="PKU Scholar"></Helmet>
-      <Typography variant="h2" component="h2" align='center'> Welcome to PKU Scholar </Typography>
-      {/* <div>
-          <ul>
-            <li>
-              <Link to="/papers">Papers</Link>
-            </li>
-            <li>
-              <Link to="/authors">Authors</Link>
-            </li>
-          </ul>
-        </div> */}
-      <Search backdrop={false} />
-      {/* <Search
-          placeholder="键入进行搜索"
-          onSearch={value =>  value}
-          style={{ 'margin-top': 50, 'margin-bottom': 300 }}
-        /> */}
-      <Divider className={classes.divider} />
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/paper/0" className={classes.example}>
-          Predicting restaurant consumption level through social media footprints
-        </Typography>
-      </Paper>
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/paper/100" className={classes.example}>
-          Building program vector representations for deep learning
-        </Typography>
-      </Paper>
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/paper/12442" className={classes.example}>
-          VeLoc: finding your car in the parking lot
-        </Typography>
-      </Paper>
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/author/biankaigui/" className={classes.example}>
-        边凯归
-        </Typography>
-      </Paper>
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/author/caodonggang/" className={classes.example}>
-        曹东刚
-        </Typography>
-      </Paper>
-    </Layout>
-  )
-}
-export const pageQuery = graphql`
-  query blogIndex {
-    allMdx {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            tags
-          }
-          fields {
-            slug
-          }
-        }
-      }
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
-    }
-  }
-`
-export default BlogIndex
+export default Result

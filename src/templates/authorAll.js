@@ -1,16 +1,16 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 // Components
-import { Link, graphql } from "gatsby"
-import Helmet from "react-helmet"
-import Layout from "../components/Layout"
+import { Link, graphql } from 'gatsby'
+import Helmet from 'react-helmet'
+import Layout from '../components/Layout'
 
 const Authors = ({ pageContext, data, location }) => {
   const { author } = pageContext
   const { edges, totalCount } = data.allMdx
   const authorHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
+    totalCount === 1 ? '' : 's'
   } are from "${author}"`
 
   return (
@@ -56,7 +56,7 @@ Authors.propTypes = {
               slug: PropTypes.string.isRequired,
             }),
           }),
-        }).isRequired
+        }).isRequired,
       ),
     }),
   }),

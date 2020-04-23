@@ -1,16 +1,16 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 // Components
-import { Link, graphql } from "gatsby"
-import Helmet from "react-helmet"
-import Layout from "../components/Layout"
+import { Link, graphql } from 'gatsby'
+import Helmet from 'react-helmet'
+import Layout from '../components/Layout'
 
 const Tags = ({ pageContext, data, location }) => {
   const { tag } = pageContext
   const { edges, totalCount } = data.allMdx
   const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
+    totalCount === 1 ? '' : 's'
   } tagged with "${tag}"`
 
   return (
@@ -56,7 +56,7 @@ Tags.propTypes = {
               slug: PropTypes.string.isRequired,
             }),
           }),
-        }).isRequired
+        }).isRequired,
       ),
     }),
   }),
