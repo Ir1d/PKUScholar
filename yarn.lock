@@ -1518,11 +1518,6 @@
     unist-builder "2.0.3"
     unist-util-visit "2.0.2"
 
-"@mdx-js/react@^1.5.8":
-  version "1.5.8"
-  resolved "https://registry.npmjs.org/@mdx-js/react/-/react-1.5.8.tgz#fc38fe0eb278ae24666b2df3c751e726e33f5fac"
-  integrity sha512-L3rehITVxqDHOPJFGBSHKt3Mv/p3MENYlGIwLNYU89/iVqTLMD/vz8hL9RQtKqRoMbKuWpzzLlKIObqJzthNYg==
-
 "@mdx-js/react@^1.6.1":
   version "1.6.1"
   resolved "https://registry.npmjs.org/@mdx-js/react/-/react-1.6.1.tgz#46e56602c1f513452db2f1f4185f56dc60a4fcb7"
@@ -7630,11 +7625,6 @@ http-errors@~1.6.2:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
-"http-parser-js@>=0.4.0 <0.4.11":
-  version "0.4.10"
-  resolved "https://registry.npmjs.org/http-parser-js/-/http-parser-js-0.4.10.tgz#92c9c1374c35085f75db359ec56cc257cbb93fa4"
-  integrity sha1-ksnBN0w1CF912zWexWzCV8u5P6Q=
-
 http-proxy-middleware@0.19.1:
   version "0.19.1"
   resolved "https://registry.npmjs.org/http-proxy-middleware/-/http-proxy-middleware-0.19.1.tgz#183c7dc4aa1479150306498c210cdaf96080a43a"
@@ -12712,7 +12702,7 @@ rxjs@^6.3.3, rxjs@^6.5.3:
   dependencies:
     tslib "^1.9.0"
 
-safe-buffer@5.1.2, safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
