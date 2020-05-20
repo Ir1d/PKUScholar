@@ -105,36 +105,36 @@ module.exports = {
         icon: `icon/favicon_512x512.png`,
       },
     },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        precachePages: [],
-        workboxConfig: {
-          importWorkboxFrom: `local`,
-          globPatterns: ["page-data/**", "*.js"],
-          runtimeCaching: [
-            {
-              urlPattern: /(\.js$|\.css$)/, // js and css
-              handler: `CacheFirst`,
-            },
-            {
-              urlPattern: /^https?:.*\.(json)$/, // page-data
-              handler: `NetworkFirst`,
-            },
-            {
-              urlPattern: /^https?:.*\.(woff|woff2)$/, // mathjax fonts
-              handler: `StaleWhileRevalidate`,
-            },
-            {
-              urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff)$/, // do not cache images
-              handler: `NetworkOnly`,
-            },
-          ],
-          skipWaiting: true,
-          clientsClaim: true,
-        },
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-offline`,
+    //   options: {
+    //     precachePages: [],
+    //     workboxConfig: {
+    //       importWorkboxFrom: `local`,
+    //       globPatterns: ["page-data/**", "*.js"],
+    //       runtimeCaching: [
+    //         {
+    //           urlPattern: /(\.js$|\.css$)/, // js and css
+    //           handler: `CacheFirst`,
+    //         },
+    //         {
+    //           urlPattern: /^https?:.*\.(json)$/, // page-data
+    //           handler: `NetworkFirst`,
+    //         },
+    //         {
+    //           urlPattern: /^https?:.*\.(woff|woff2)$/, // mathjax fonts
+    //           handler: `StaleWhileRevalidate`,
+    //         },
+    //         {
+    //           urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff)$/, // do not cache images
+    //           handler: `NetworkOnly`,
+    //         },
+    //       ],
+    //       skipWaiting: true,
+    //       clientsClaim: true,
+    //     },
+    //   },
+    // },
     // "gatsby-plugin-webpack-bundle-analyser-v2"
     // when you need to analyze bundle size, enable it
   ],
