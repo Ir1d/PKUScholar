@@ -496,7 +496,7 @@ function BlogIndex ({
       </Paper>
       <Paper variant="outlined" className={classes.paperRoot}>
         <Typography variant="h6" component="a" href="/author/c/LijunChen2/" className={classes.example}>
-        曹东刚
+        陈立军
         </Typography>
       </Paper>
     </Layout>
