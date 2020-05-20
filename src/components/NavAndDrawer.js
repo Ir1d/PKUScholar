@@ -97,15 +97,15 @@ function ResponsiveDrawer (props) {
           <div style={{ flexGrow: 1 }} />
           {hasSearch && <Search />}
           <Tooltip title="作者页" placement="bottom" arrow>
-            <IconButton component={'a'} href={'/papers'} color={'inherit'}>
+            <IconButton component={'a'} href={'/authors'} color={'inherit'}>
               <PeopleAltIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="文章页" placement="bottom" arrow>
+          {/* <Tooltip title="文章页" placement="bottom" arrow>
             <IconButton component={'a'} href={'/authors'} color={'inherit'}>
               <LibraryBooksIcon />
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
           <Tooltip title="GitHub 存储库" placement="bottom" arrow>
             <IconButton component={'a'} href={OIWikiGithub} color={'inherit'}>
               <GitHubIcon />

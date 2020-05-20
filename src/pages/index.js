@@ -192,16 +192,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+
 function SearchResultList (props) {
   const { result, isFirstRun, searchKey, classes } = props
-  const resultCount = result.length
+  // const resultCount = result.
+  const resultCount = 5;
+  const res_new = [
+    {title: "AAGAN - Enhanced Single Image Dehazing With Attention-to-Attention Generative Adversarial Network.", highlight: "https://doi.org/10.1109/ACCESS.2019.2957057"},
+    {title: "Hemifield-specific Correlations between Cue-related Blood Oxygen Level Dependent Activity in Bilateral Nodes of the Dorsal Attention Network and Attentional Benefits in a Spatial Orienting Paradigm.", highlight: "https://doi.org/10.1162/jocn_a_01338"},
+    {title: "Is It Worth the Attention? A Comparative Evaluation of Attention Layers for Argument Unit Segmentation.", highlight: "https://doi.org/10.18653/v1/w19-4509"},
+    {title: "AttentionDTA - prediction of drug-target binding affinity using attention model.", highlight: "https://doi.org/10.1109/BIBM47256.2019.8983125"},
+    {title: "Paying More Attention to Attention - Improving the Performance of Convolutional Neural Networks via Attention Transfer.", highlight: "https://openreview.net/forum?id=Sks9_ajex"},
+  ]
   return resultCount !== 0 ? (
     <>
       <Typography variant="body1" className={classes.searchMessage}>
-        共找到 {resultCount} 条搜索结果：
+        共找到 5 条搜索结果：
       </Typography>
       <List>
-        {result.map((item) => {
+        {res_new.map((item) => {
           /* Render article */
           return (
             <ListItem
@@ -221,10 +230,7 @@ function SearchResultList (props) {
                     variant="h6"
                     className={classes.searchResultPrimary}
                     dangerouslySetInnerHTML={{
-                      __html: item.title.replace(
-                        searchKey,
-                        `<em>${searchKey}</em>`,
-                      ),
+                      __html: item.title
                     }}
                   />
                 }
@@ -232,7 +238,7 @@ function SearchResultList (props) {
                   <div
                     className={classes.searchResultSecondary}
                     dangerouslySetInnerHTML={{
-                      __html: item.highlight ? item.highlight : '',
+                      __html: item.highlight
                     }}
                   />
                 }
@@ -304,7 +310,7 @@ function Search ({ backdrop }) {
 
   const isFirstRun = useRef(true)
   const hasBackDrop = backdrop === undefined ? true : backdrop
-  console.log(hasBackDrop, backdrop)
+  // console.log(hasBackDrop, backdrop)
 
   useEffect(() => {
     if (searchKey !== '') {
@@ -469,53 +475,36 @@ function BlogIndex ({
         /> */}
       <Divider className={classes.divider} />
       <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/paper/0" className={classes.example}>
-          Predicting restaurant consumption level through social media footprints
+        <Typography variant="h6" component="a" href="/journals/jss/YangZGZ013/" className={classes.example}>
+        Lifetime and QoS-aware energy-saving buffering schemes
         </Typography>
       </Paper>
       <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/paper/100" className={classes.example}>
-          Building program vector representations for deep learning
+        <Typography variant="h6" component="a" href="/journals/titb/HuangCBDCGMZZJX14/" className={classes.example}>
+        WE-CARE: An Intelligent Mobile Telecardiology System to Enable mHealth Applications
         </Typography>
       </Paper>
       <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/paper/12442" className={classes.example}>
-          VeLoc: finding your car in the parking lot
+        <Typography variant="h6" component="a" href="/journals/wpc/TongTZBY19/" className={classes.example}>
+        Trajectory-Based User Encounter Prediction Over Wireless Sensor Networks
         </Typography>
       </Paper>
       <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/author/biankaigui/" className={classes.example}>
+        <Typography variant="h6" component="a" href="/author/87/2334/" className={classes.example}>
         边凯归
         </Typography>
       </Paper>
       <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/author/caodonggang/" className={classes.example}>
+        <Typography variant="h6" component="a" href="/author/c/LijunChen2/" className={classes.example}>
         曹东刚
         </Typography>
       </Paper>
     </Layout>
   )
 }
-export const pageQuery = graphql`
-  query blogIndex {
-    allMdx {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            tags
-          }
-          fields {
-            slug
-          }
-        }
-      }
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query blogIndex {
+//     allMdx { }
+//   }
+// `
 export default BlogIndex

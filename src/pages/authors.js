@@ -15,9 +15,9 @@ const AuthorsPage = ({ data, location }) => {
       <div>
         <h1>Authors</h1>
         <ul>
-          {group.map(author => (
-            <li key={author.frontmatter.en_name}>
-              <Link to={`/author/${author.frontmatter.en_name}/`}>
+          {group.map((author) => (
+            <li key={author.frontmatter.pid}>
+              <Link to={`/author/${encodeURI(author.frontmatter.pid)}/`}>
                 {author.frontmatter.cn_name}
               </Link>
             </li>
@@ -58,6 +58,7 @@ export const pageQuery = graphql`
         frontmatter {
           cn_name
           en_name
+          pid
         }
       }
     }

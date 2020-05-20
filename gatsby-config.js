@@ -9,12 +9,26 @@ module.exports = {
   plugins: [
     `gatsby-source-local-git`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: "paper",
-        path: "./paper/",
+        path: "./data/",
       },
     },
+    "gatsby-transformer-json",
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: "paper",
+    //     path: "./paper/",
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: "paper",
+    //     path: "./paper/paperinfo",
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -47,7 +61,7 @@ module.exports = {
             },
           },
           {
-            resolve: `gatsby-remark-autolink-headers`,
+            resolve: `gatsby-local-autolink-headers`,
             options: {
               isIconAfterHeader: true,
             },

@@ -10,27 +10,14 @@ export default ({ data, location }) => {
 
 export const query = graphql`
   query($id: String!) {
-    mdx: mdx(id: { eq: $id }) {
+    mdx: papersJson(id: { eq: $id }) {
       id
-      fields {
         slug
-      }
-      excerpt
-      body
-      headings {
-        value
-      }
-      frontmatter {
-        authors
+        author_names
         title
-        tags
-        year
-        authors_key
-        article_link
-        venue
-        bibex
-      }
-      toc: tableOfContents
+        author_keys
+        ee
+        bib_text
       parent {
         ... on File {
           relativePath

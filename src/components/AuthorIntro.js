@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function AuthorIntro ({ cn_name, intro, img_url, citedby, homePage }) {
+function AuthorIntro ({ cn_name, intro, img_src, homePage }) {
   const classes = useStyles()
   return (
     <div>
@@ -61,15 +61,15 @@ function AuthorIntro ({ cn_name, intro, img_url, citedby, homePage }) {
                 ),
               )
               : ''}
-            {citedby !== '' ? (
+            {/* {citedby !== '' ? (
               <Chip variant="outlined" label={'总引用：' + citedby} key={'citation'}></Chip>
             ) : (
               ''
-            )}
+            )} */}
             {homePage !== '' ? (
-              <a href={homePage} target="_blank">
+              // <a href={homePage} target="_blank">
                 <Chip variant="outlined" label={'学院主页：' + homePage} key={'homePage'}></Chip>
-              </a>
+              // </a>
             ) : (
               ''
             )}
@@ -77,7 +77,7 @@ function AuthorIntro ({ cn_name, intro, img_url, citedby, homePage }) {
         </Grid>
 
         <Grid item xs={3}>
-          <Avatar src={img_url} className={classes.avatar} />
+          <Avatar src={img_src} className={classes.avatar} />
         </Grid>
       </Grid>
     </div>

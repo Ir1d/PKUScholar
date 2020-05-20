@@ -1,5 +1,6 @@
 const path = require("path")
 const _ = require("lodash")
+// import JSONData from "../../content/My-JSON-Content.json"
 
 const { createFilePath } = require("gatsby-source-filesystem")
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -7,9 +8,24 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // you only want to operate on `Mdx` nodes. If you had content from a
   // remote CMS you could also check to see if the parent node was a
   // `File` node here
+  // console.log(node.internal.type);
+  // if (node.internal.type === "PapersJson") {
+  //   console.log(node.article_key)
+  //   createNodeField({
+  //     // Name of the field you are adding
+  //     name: "slug",
+  //     // Individual MDX node
+  //     node,
+  //     // Generated value based on filepath with "blog" prefix. you
+  //     // don't need a separating "/" before the value because
+  //     // createFilePath returns a path with the leading "/".
+  //     value: `/paper/${encodeURI(node.article_key)}`,
+  //     // value: `/author${value}`,
+  //   })
+  // }
   if (node.internal.type === "Mdx") {
     // console.log(node)
-    const value = createFilePath({ node, getNode })
+    const value = encodeURI(createFilePath({ node, getNode }))
     const parent = getNode(node.parent)
 
     if (parent.internal.type === "File") {
@@ -20,7 +36,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       })
     }
     // if (node.fileAbsolutePath.indexOf("author") > -1)
-    if (parent.sourceInstanceName === "author")
+    if (parent.sourceInstanceName === "author") {
       createNodeField({
         // Name of the field you are adding
         name: "slug",
@@ -29,19 +45,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         // Generated value based on filepath with "blog" prefix. you
         // don't need a separating "/" before the value because
         // createFilePath returns a path with the leading "/".
-        value: `/author${value}`,
+        value: `/author/${encodeURI(node.frontmatter.pid)}`,
+        // value: `/author${value}`,
       })
-    else
-      createNodeField({
-        // Name of the field you are adding
-        name: "slug",
-        // Individual MDX node
-        node,
-        // Generated value based on filepath with "blog" prefix. you
-        // don't need a separating "/" before the value because
-        // createFilePath returns a path with the leading "/".
-        value: `/paper${value}`,
-      })
+      // console.log(`/author/${encodeURI(node.frontmatter.en_name)}`)
+    }
   }
 }
 
@@ -90,25 +98,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
   const docTemplate = path.resolve("src/templates/doc.js")
+  // const jsonTemplate = path.resolve("src/templates/json.js")
   const authorTemplate = path.resolve("src/templates/authorPage.js")
-  const tagTemplate = path.resolve("src/templates/tags.js")
+  // const tagTemplate = path.resolve("src/templates/tags.js")
 
   const result = await graphql(`
     {
-      papers: allMdx(
-        sort: { order: DESC, fields: [frontmatter___title] }
-        limit: 2000
-        filter: { fields: { sourceName: { eq: "paper" } } }
-      ) {
-        edges {
-          node {
-            fields {
-              slug
-            }
-            id
-          }
-        }
-      }
       authors: allMdx(
         sort: { order: DESC, fields: [frontmatter___title] }
         limit: 2000
@@ -121,41 +116,68 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             }
             id
             frontmatter {
-              en_name
+              pid
             }
           }
         }
       }
-      tagsGroup: allMdx(limit: 2000) {
-        group(field: frontmatter___tags) {
-          fieldValue
+      papersGroup: allPapersJson {
+        edges {
+          node {
+            slug
+            id
+          }
         }
       }
     }
-  `)
-
+    `)
+    // tagsGroup: allPapersJson(limit: 2000) {
+    //   group(field: tags) {
+    //     fieldValue
+    //   }
+    // }
+    
   // handle errors
   if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
 
-  const papers = result.data.papers.edges
-  // console.log(posts)
-  // Create post detail pages
-  papers.forEach(({ node }, index) => {
-    const previous = index === papers.length - 1 ? null : papers[index + 1]
-    const next = index === 0 ? null : papers[index - 1]
-    createPage({
-      path: node.fields.slug,
-      component: docTemplate,
-      context: {
-        id: node.id,
-        previous,
-        next,
-      },
-    })
-  })
+  // const papers = result.data.papers.edges
+  // // console.log(posts)
+  // // Create post detail pages
+  // papers.forEach(({ node }, index) => {
+  //   const previous = index === papers.length - 1 ? null : papers[index + 1]
+  //   const next = index === 0 ? null : papers[index - 1]
+  //   createPage({
+  //     path: node.fields.slug,
+  //     component: docTemplate,
+  //     context: {
+  //       id: node.id,
+  //       previous,
+  //       next,
+  //     },
+  //   })
+  // })
+  // const papers = JSON.parse(fs.readFileSync("./papers.json", "utf-8"))
+
+  // Object.entries(papers).forEach((data) => {
+  //   // console.log(papers[key])
+  //   const id = data[0];
+  //   const curPaper = data[1];
+  //   createPage({
+  //     path: id,
+  //     component: jsonTemplate,
+  //     context: {
+  //       title: curPaper['title'],
+  //       authors: curPaper['authors'],
+  //       year: curPaper['year'],
+  //       article_link: curPaper['article_link'],
+  //       venue: curPaper['venue'],
+  //       bibex: curPaper['bibex'],
+  //     }
+  //   })
+  // });
 
   const authors = result.data.authors.edges
   // console.log(authors)
@@ -169,25 +191,26 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       component: authorTemplate,
       context: {
         id: node.id,
-        en_name: node.frontmatter.en_name,
+        pid: node.frontmatter.pid,
         previous,
         next,
       },
     })
+    // console.log(node.frontmatter)
   })
 
-  const tags = result.data.tagsGroup.group
+  // const tags = result.data.tagsGroup.group
 
-  // Make tag pages
-  tags.forEach(tag => {
-    createPage({
-      path: `/tag/${_.kebabCase(tag.fieldValue)}/`,
-      component: tagTemplate,
-      context: {
-        tag: tag.fieldValue,
-      },
-    })
-  })
+  // // Make tag pages
+  // tags.forEach(tag => {
+  //   createPage({
+  //     path: `/tag/${_.kebabCase(tag.fieldValue)}/`,
+  //     component: tagTemplate,
+  //     context: {
+  //       tag: tag.fieldValue,
+  //     },
+  //   })
+  // })
 
   if (result.errors) {
     reporter.panic(result.errors)
@@ -213,4 +236,21 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
   */
+
+  const papers = result.data.papersGroup.edges;
+  papers.forEach(({ node }, index) => {
+    // console.log(node.frontmatter.en_name)
+    // const previous = index === authors.length - 1 ? null : authors[index + 1]
+    // const next = index === 0 ? null : authors[index - 1]
+    createPage({
+      path: node.slug,
+      component: docTemplate,
+      context: {
+        id: node.id,
+        // en_name: node.frontmatter.en_name,
+        // previous,
+        // next,
+      },
+    })
+  })
 }

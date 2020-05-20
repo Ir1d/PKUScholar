@@ -1,0 +1,11 @@
+---
+en_name: "yunfang wu"
+cn_name: "吴云芳"
+img_src: https://eecs.pku.edu.cn/__local/D/2D/A0/0879E86E74833943CB2E732967E_9A3C38CC_BD6.vsb?e=.jpg
+homepage: https://eecs.pku.edu.cn/info/1340/6084.htm
+intro: ['职称：副教授', '研究所：计算语言学研究所', '研究领域： ', '办公电话：86-10-62765835-211', '电子邮件：wuyf@pku.edu.cn', '个人主页： ']
+pid: "83/3463"
+coauthor_names: ['Xinqi Bao', 'John A. Carroll', 'Damai Dai', 'Siyu Duan', 'Tao Guo', 'Yancheng He', 'Jia-Fei Hong', 'Peng Jin', 'Cai Jing', 'Fuxin Li', 'Sujian Li', 'Wei Li', 'Wei Li 0101', 'Weikang Li', 'Yun Li', 'Chen Liang', 'Shu Liu', 'Yajun Liu', 'Zhiyi Long', 'Senlin Luo', 'Xueqiang Lv', 'Diana McCarthy', 'Lin Miao', 'Likun Qiu', 'Weiguang Qu', 'Xuancheng Ren', 'Yanqiu Shao', 'Jing Shi', 'Qi Su', 'Zhifang Sui', 'Xu Sun 0001', 'Fei Wang', 'Houfeng Wang', 'Miao Wang', 'Yixiu Wang', 'Yue Wang', 'Zhimin Wang', 'Furu Wei', 'Miaomiao Wen', 'Xiuyu Wu', 'Jingjing Xu', 'Yifeng Xu', 'Shengli Yan', 'Shiwen Yu', 'Hongying Zan', 'Minghua Zhang', 'Xiaojun Zhang', 'Xingxing Zhang', 'Yangsen Zhang', 'Ming Zhou 0001', 'Wenjie Zhou', 'Xiaorui Zhou', 'Danqing Zhu']
+coauthor_ids: ['187/3077', 'c/JohnACarroll', '199/2097', '263/2380', '43/56', '236/6241', '05/5079', '83/6151', '158/3264', '03/2783', '05/4288', '64/6025', '64/6025-101', '174/3818', '87/6284', '35/3221', '57/1180', '88/2830', '27/6000', '97/6043', '30/6106', '49/1124', '20/4207', '44/134', '04/5857', '202/2250', '70/1496', '92/4638', '25/221', '22/5834', '37/1971-1', '52/3194', '38/1358', '80/5294', '169/1449', '33/4822', '47/6292', '72/5870', '32/9232', '241/6047', '25/624', '77/4270', '147/4504', '11/652', '06/441', '24/6799', '24/3507', '59/9985', '51/777', '16/1161-1', '137/9454', '146/2186', '187/0964']
+paper_keys: ['journals/jcst/BaoW16', 'journals/corr/abs-1908-11813', 'journals/ijclclp/LiLWW05', 'journals/corr/abs-2004-06438', 'journals/corr/abs-1911-08648', 'journals/corr/abs-1905-06597', 'journals/corr/abs-1809-06590', 'journals/ijcpol/QuLZWSY08', 'journals/corr/abs-1709-05599', 'journals/corr/abs-1910-01822', 'journals/corr/abs-1906-01231', 'journals/corr/abs-1808-05437', 'journals/ijclclp/WuLLY05', 'journals/corr/abs-2004-06427', 'journals/corr/abs-1909-00140', 'journals/lre/WuJ13', 'journals/corr/abs-1801-09031', 'journals/corr/abs-1803-03476']
+---

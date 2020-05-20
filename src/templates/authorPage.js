@@ -10,20 +10,21 @@ import AuthorPapers from '../components/AuthorPapers'
 import Meta from '../components/Meta'
 
 const Authors = ({ pageContext, data, curPaper, location }) => {
-  const { en_name } = pageContext
+  // const { pid } = pageContext
   const mdx = data.mdx
   // console.log(data)
   const cn_name = mdx.frontmatter.cn_name || ''
-  const img_url = mdx.frontmatter.img_url || ''
+  const img_src = mdx.frontmatter.img_src || ''
   const homePage = mdx.frontmatter.homepage || ''
   const intro = mdx.frontmatter.intro || ''
-  const publicationTitles = mdx.frontmatter.publicationTitles || ''
-  const google_info = mdx.frontmatter.google_info || ''
-  const affiliation = google_info.affiliation || ''
-  const citedby = google_info.citedby || ''
+  // const publicationTitles = mdx.frontmatter.publicationTitles || ''
+  // const google_info = mdx.frontmatter.google_info || ''
+  // const affiliation = google_info.affiliation || ''
+  // const citedby = google_info.citedby || ''
   const relativePath = mdx.parent.relativePath || ''
   const modifiedTime = mdx.parent.modifiedTime || ''
   // console.log(google_info)
+  // console.log(data.curPaper)
   return (
     <Layout location={location} noMeta="true">
       <Helmet title={` ${cn_name} - PKU Scholar`}></Helmet>
@@ -32,14 +33,14 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
         <AuthorIntro
           intro={intro}
           cn_name={cn_name}
-          img_url={img_url}
-          citedby={citedby}
+          img_src={img_src}
+          // citedby={citedby}
           homePage={homePage}
         ></AuthorIntro>
         <AuthorPapers
           papers={data.curPaper}
           cn_name={cn_name}
-          publicationTitles={publicationTitles}
+          // publicationTitles={publicationTitles}
         ></AuthorPapers>
         <Link to="/authors">Click to see authors list</Link>
         <Meta
@@ -81,7 +82,7 @@ const Authors = ({ pageContext, data, curPaper, location }) => {
 export default Authors
 
 export const pageQuery = graphql`
-  query($id: String, $en_name: String) {
+  query($id: String, $pid: String) {
     mdx: mdx(id: { eq: $id }, fields: { sourceName: { eq: "author" } }) {
       id
       fields {
@@ -89,15 +90,9 @@ export const pageQuery = graphql`
       }
       frontmatter {
         cn_name
-        img_url
+        img_src
         homepage
         intro
-        google_info {
-          affiliation
-          citedby
-          citedby5y
-        }
-        publicationTitles
       }
       toc: tableOfContents
       parent {
@@ -107,23 +102,18 @@ export const pageQuery = graphql`
         }
       }
     }
-    curPaper: allMdx(
+    curPaper: allPapersJson(
       limit: 2000
-      sort: { fields: [frontmatter___title], order: DESC }
+      sort: { fields: [title], order: DESC }
       filter: {
-        frontmatter: { authors_key: { in: [$en_name] } }
-        fields: { sourceName: { eq: "paper" } }
+        author_keys: { in: [$pid] }
       }
     ) {
       totalCount
       edges {
         node {
-          fields {
             slug
-          }
-          frontmatter {
             title
-          }
         }
       }
     }

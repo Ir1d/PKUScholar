@@ -1,0 +1,11 @@
+---
+en_name: "yang liu"
+cn_name: "刘扬"
+img_src: https://eecs.pku.edu.cn/__local/E/BF/60/6405AA0285C5DA204DBCB1334FC_9613A920_92EE2.png?e=.png
+homepage: https://eecs.pku.edu.cn/info/1340/6089.htm
+intro: ['职称：副教授', '研究所：计算语言学研究所', '研究领域：计算语言学、中文信息处理、语言知识工程 ', '办公电话：86-10-62765835-205', '电子邮件：liuyang@pku.edu.cn', '个人主页： ']
+pid: "52/4629"
+coauthor_names: ['Bo Cheng', 'Xiao-Liang Dong', 'Xue-wen Du', 'Hailin Feng', 'Quan-Xi Feng', 'Weifeng Gao', 'Lingling Huang', 'Yuanyuan Huang', 'Fei Jiang', 'Hong-Wei Jiao', 'Bing-Han Li', 'Qian Li', 'Zhan Guo Li', 'Kui Liu', 'Yan-Feng Liu', 'Yong Lin Liu', 'Hong-yun Meng', 'Chuan-dong Qin', 'Keyun Qin', 'Pei-Ping Shen', 'Yue Song', 'Chun-Feng Wang', 'Chunfeng Wang', 'Jue Wang', 'Shou-Yang Wang', 'Shi-Liang Wu', 'Min Xu 0005', 'Yang Xu 0001', 'Zhan-jun Xue', 'Guo-Ping Yang', 'Xin-She Yang 0001', 'Ren-he Zhai', 'Jian-Ke Zhang', 'Jie Zhang', 'Shi-fang Zhang', 'Xiaohua Zhang', 'Hai-Qin Zhao', 'Qi-yan Zhou', 'Qiang Zhu 0003']
+coauthor_ids: ['05/2700', '144/9187', '30/7010', '40/5143', '130/7181', '76/9788', '37/6241', '09/10785', '80/4567', '146/8941', '16/10473', '69/5902', '11/11533', '71/7399', '126/3075', '44/1864', '36/5976', '186/7633', '66/7028', '50/6503', '11/1346', '99/2540', '33/2151', '69/393', '45/1875', '14/2624', '09/0-5', '61/3906-1', '92/7567', '130/6936', '14/6178-1', '55/10531', '130/7137', '84/6889', '80/9547', '66/362', '124/7678', '31/7264', '34/6522-3']
+paper_keys: ['journals/fodm/WangLZW06', 'journals/jam/HuangLDD13', 'journals/isci/LiuLXQ03', 'journals/soco/LiuLX07', 'journals/mta/LiLL12', 'journals/amc/WuL10a', 'journals/apin/YangLZF13', 'journals/eor/JiaoL15', 'journals/amc/HuangLG10', 'journals/isci/ZhuLX08', 'journals/ahswn/LiuWL17', 'journals/ijdsn/LiuLF12', 'journals/corr/abs-2003-04713', 'journals/isci/GaoLH14', 'journals/amc/GaoLJ11', 'journals/cor/WangL11', 'journals/tr/SongFL06', 'journals/cma/ChengL11', 'journals/ipl/XueL09', 'journals/appml/WuL09', 'journals/asc/GaoLH13', 'journals/jam/LiuH14', 'journals/eswa/LiLY20', 'journals/candie/ZhangLZ11', 'journals/asc/LiuL13', 'journals/ijdsn/LiuWL14', 'journals/amc/WangLS10', 'journals/cor/GaoL12', 'journals/eswa/ZhangL11a', 'journals/asc/GaoHWLQ16', 'journals/access/LiuWL19', 'journals/corr/abs-2003-03789', 'journals/ipl/ZhouLZ09', 'journals/tcyb/GaoLH13', 'journals/jam/ZhaoL12']
+---

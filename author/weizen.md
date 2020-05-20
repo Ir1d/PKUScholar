@@ -1,0 +1,11 @@
+---
+en_name: "wei zen"
+cn_name: "曾炜"
+img_src: https://eecs.pku.edu.cn/__local/D/2D/A0/0879E86E74833943CB2E732967E_9A3C38CC_BD6.vsb?e=.jpg
+homepage: https://eecs.pku.edu.cn/info/1339/6071.htm
+intro: ['职称：副研究员', '研究所：数字媒体研究所', '研究领域： ', '办公电话：86-10-62753817', '电子邮件：weizeng@pku.edu.cn', '个人主页： ']
+pid: "74/6974"
+coauthor_names: ['Kai-Ting Chang', 'Yu-Wei Chang', 'Chien-Hung Chen', 'Hsiao-Hwa Chen', 'Hung-Kai Chen', 'Hung-Ming Chen', 'Tung-Chieh Chen', 'Wen-Hui Chen', 'Yu-Hsian Chen', 'Mao-Hsuan Chou', 'Shun-Tien Chou', 'Yuan-Fang Chou', 'Ruei-Ming Gan', 'Wei-Hsiang Ho', 'Zheng-Hao Hong', 'Chih-Hua Hsiao', 'Kuo-Ching Hsu', 'Shih-Hsin Hsu', 'Guan-Sheng Huang', 'Guo-Wei Huang', 'Shih-Hao Huang', 'Yang-Tung Huang', 'Yu-Ping Huang', 'Chia-Tse Hung', 'Jhong-Ting Jian', 'Shyh-Jye Jou', 'Po-I Kuo', 'Chao-Cheng Lee', 'Chia-Fone Lee', 'Yen-Wei Lee', 'Yuan-Sheng Lee', 'Jung Yen Liao', 'Da-Shin Lin', 'Shu-Yu Lin', 'Sean S.-Y. Liu', 'Wen-De Liu', 'Yao-Chia Liu', 'Chao-Hsin Lu', 'Tai-You Lu', 'Wei-Wen Ou', 'Po-Cheng Pan', 'Zhiyuan Ren', 'Yu-Lin Song', 'Ming-Chiuan Su', 'Tsung-Hsien Tsai', 'Yan-Ting Wang', 'Yi-Peng Weng', 'Chung-Yu Wu', 'Pei-Si Wu', 'Song-Yu Yang', 'Yi-Hung Yang', 'Chi-Yao Yu', 'Min-Shueh Yuan', 'Jui-Pin Zheng']
+coauthor_ids: ['146/1347', '09/2929', '24/1211', '41/2526', '39/2463', '70/3994', '04/2706', '63/6206', '137/1442', '137/1428', '10/9434', '90/9171', '29/11302', '207/0692', '119/4197', '177/3791', '136/1365', '65/5066', '84/3610', '00/292', '75/5427', '89/7494', '22/9849', '232/6782', '146/1353', '15/534', '187/9247', '73/10710', '42/9173', '137/1515', '168/5905', '177/3802', '45/2271', '84/521', '168/5914', '177/3778', '137/1512', '80/11177', '37/9427', '04/9430', '51/265', '47/3883', '139/8529', '137/1558', '14/240', '146/1351', '89/10660', '07/1010', '92/1825', '29/9431', '146/1354', '54/5334', '137/1563', '168/5915']
+paper_keys: ['journals/jssc/LeeHC19', 'journals/jssc/HuangC17', 'journals/iet-spr/RenCC16', 'journals/jssc/HongLC15', 'journals/tcas/SuCWCLJ15', 'journals/tvlsi/SuJC15', 'journals/tcas/ChenLWJYC14', 'journals/tcas/LuYCW13', 'journals/tcas/ChenLOCY12', 'journals/tvlsi/LuC12', 'journals/jssc/HuangCCH11', 'journals/jssc/YangCL10', 'journals/tcas/ChenGH09', 'journals/tcas/ChenH08', 'journals/tcas/ChenCH07', 'journals/tvlsi/ChenL07', 'journals/tcas/ChenL06']
+---

@@ -1,9 +1,0 @@
----
-en_name: chenhongjie
-cn_name: 陈泓婕
-img_url: https://eecs.pku.edu.cn/__local/D/2D/A0/0879E86E74833943CB2E732967E_9A3C38CC_BD6.vsb?e=.jpg
-homepage: https://eecs.pku.edu.cn/info/1338/7123.htm
-intro: ['职称：副教授', '研究所：软件研究所', '研究领域： ', '办公电话：', '电子邮件：chenhj@sei.pku.edu.cn', '个人主页： ']
-google_info: {'_filled': True, 'affiliation': 'Beijing University of Technology', 'citedby': 125, 'citedby5y': 125, 'cites_per_year': {2016: 3, 2017: 13, 2018: 18, 2019: 75, 2020: 16}}
-publicationTitles: ['Continuous model and nonlinear dynamic responses of circular mesh antenna clamped at one side', 'Nonlinear breathing vibrations and chaos of a circular truss antenna with 1: 2 internal resonance', 'Nonlinear dynamics of initially imperfect functionally graded circular cylindrical shell under complex loads', 'Nonlinear aeroelastic flutter and dynamic response of composite laminated cylindrical shell in supersonic air flow', 'Free vibration of rotating cantilever pre-twisted panel with initial exponential function type geometric imperfection', 'Vibration characteristics of a rotating pre-twisted composite laminated blade', 'Analysis of flutter and nonlinear dynamics of a composite laminated plate', 'Nonlinear Dynamics of a Fluid-Structure Coupling Model for Vortex-Induced Vibration', 'Stability analysis for geometric nonlinear functionally graded sandwich shallow shell using a new developed displacement field', 'Free vibration analysis of rotating pretwisted functionally graded sandwich blades', 'Vibration frequencies and energies of an auxetic honeycomb sandwich plate', 'Nonlinear dynamics of a foldable multibeam structure with one to two internal resonances', 'Dynamic stability of rotating cantilever composite thin walled twisted plate with initial geometric imperfection under in-plane load', 'Evaluations of Coupled Transverse-Rotational Galloping of Slender Structures with Nonlinear Effect']
----

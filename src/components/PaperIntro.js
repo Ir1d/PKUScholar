@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function PaperIntro ({ link, year, venue, bibtex, authors_key }) {
+function PaperIntro ({ link, year, bibtex, authors_key }) {
   const classes = useStyles()
   return (
     <div>
@@ -31,8 +31,8 @@ function PaperIntro ({ link, year, venue, bibtex, authors_key }) {
           >
             <Chip component={'a'} href={link} label={link} key="link" clickable variant="outlined"></Chip>
             {/* <Chip label={year} key="year"></Chip> */}
-            <Chip label={venue} key="venue" variant="outlined"></Chip>
-            <Chip label={year} key="year" variant="outlined"></Chip>
+            {/* <Chip label={venue} key="venue" variant="outlined"></Chip> */}
+            {/* <Chip label={year} key="year" variant="outlined"></Chip> */}
             {/* {citedby !== "" ? (
                 <Chip label={"总引用：" + citedby} key={"citation"}></Chip>
               ) : (
@@ -44,7 +44,7 @@ function PaperIntro ({ link, year, venue, bibtex, authors_key }) {
         </Grid>
 
         {/* <Col span={6}>
-          <Avatar src={img_url} size={128} />
+          <Avatar src={img_src} size={128} />
         </Col> */}
       </Grid>
     </div>
