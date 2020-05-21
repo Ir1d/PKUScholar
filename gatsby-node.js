@@ -124,7 +124,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       papersGroup: allPapersJson {
         edges {
           node {
-            slug
+            article_key
             id
           }
         }
@@ -243,7 +243,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     // const previous = index === authors.length - 1 ? null : authors[index + 1]
     // const next = index === 0 ? null : authors[index - 1]
     createPage({
-      path: node.slug,
+      path: node.article_key,
       component: docTemplate,
       context: {
         id: node.id,
