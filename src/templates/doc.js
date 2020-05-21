@@ -12,7 +12,7 @@ export const query = graphql`
   query($id: String!) {
     mdx: papersJson(id: { eq: $id }) {
       id
-        slug
+      article_key
         author_names
         title
         author_keys

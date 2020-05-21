@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
 import { graphql } from 'gatsby'
+import React, { useState, useEffect, useRef } from 'react'
 import Layout from '../components/Layout'
 import Tags from '../components/Tags'
 // import { Card, Row, Col, Select, Menu, Input } from 'antd'
@@ -454,7 +454,7 @@ function BlogIndex ({
 }) {
   const classes = useStyles()
   return (
-    <Layout location={location} noMeta="true" hasSearch={false}>
+    <Layout location="/" noMeta="true" hasSearch={false}>
       <Helmet title="PKU Scholar"></Helmet>
       <Typography variant="h2" component="h2" align='center'> Welcome to PKU Scholar </Typography>
       {/* <div>

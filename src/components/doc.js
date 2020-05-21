@@ -5,7 +5,7 @@ import PaperIntro from '../components/PaperIntro'
 
 function mdx ({ data: { mdx }, location }) {
   // const headingTitle = mdx.headings[0] && mdx.headings[0].value
-  const title = mdx.slug === '/' ? null : mdx.title
+  const title = mdx.article_key === '/' ? null : mdx.title
   const description = mdx.description || mdx.excerpt
   const authors = mdx.author_names || null
   const tags = mdx.tags || null

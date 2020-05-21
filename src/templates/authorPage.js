@@ -104,7 +104,7 @@ export const pageQuery = graphql`
     }
     curPaper: allPapersJson(
       limit: 2000
-      sort: { fields: [title], order: DESC }
+      sort: { fields: [mdate], order: DESC }
       filter: {
         author_keys: { in: [$pid] }
       }
@@ -112,8 +112,9 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
-            slug
+          article_key
             title
+            mdate
         }
       }
     }

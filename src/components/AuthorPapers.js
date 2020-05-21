@@ -11,10 +11,10 @@ function AuthorPapers ({ papers, cn_name }) {
       <h2>{authorHeader}</h2>
       <ul>
         {edges.map(({ node }, index) => {
-          const { slug, title } = node
+          const { article_key, title, mdate } = node
           return (
             <li key={index}>
-              <Link to={slug}>{title}</Link>
+              <Link to={article_key}>{title}, {mdate}</Link>
             </li>
           )
         })}
