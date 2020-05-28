@@ -35,7 +35,7 @@ const query = (props) => (
 )
 export default query
 
-function FooterContent ({ data }) {
+function FooterContent ({ data, location }) {
   const classes = useStyles()
   const { date, hash } = data.allGitCommit.nodes[0]
   return (
@@ -45,18 +45,22 @@ function FooterContent ({ data }) {
           Copyright © 2016 - {date.substr(0, 4)} PKU Scholar
         </Typography>
       </Grid>
-      <Grid item xs={12}>
-        <Typography>
-          最近更新:{' '}
-          <Link
-            className={classes.link}
-            href={'https://github.com/ir1d/PKUScholar/commits'}
-          >
-            {hash.substr(0, 7)}
-          </Link>
-          , {date.substr(0, 10)}
-        </Typography>
-      </Grid>
+      {location !== '/' ? (
+        <Grid item xs={12}>
+          <Typography>
+            最近更新:{' '}
+            <Link
+              className={classes.link}
+              href="https://github.com/ir1d/PKUScholar/commits"
+            >
+              {hash.substr(0, 7)}
+            </Link>
+            , {date.substr(0, 10)}
+          </Typography>
+        </Grid>
+      ) : (
+        ''
+      )}
       {/* <Grid item xs={12}>
         <Typography>
           联系方式：

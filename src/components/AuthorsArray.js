@@ -22,7 +22,7 @@ function AuthorsArray ({ authors, authors_key }) {
       <Header num={arr ? arr.length : 0}></Header>
       {arr
         ? arr.map((author, idx) => (
-          <Chip label={` ${author} `} clickable href={'/author/' + authors_key[idx].trim()} key={author} className={classes.chip} component={'a'} variant="outlined"></Chip>
+          <Chip label={` ${author} `} clickable href={'/author/' + authors_key[idx].trim()} key={author} className={classes.chip} component="a" variant="outlined"></Chip>
         ))
         : ''}
     </div>

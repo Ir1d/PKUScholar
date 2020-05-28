@@ -1,11 +1,8 @@
 import { graphql } from 'gatsby'
 import React, { useState, useEffect, useRef } from 'react'
-import Layout from '../components/Layout'
-import Tags from '../components/Tags'
 // import { Card, Row, Col, Select, Menu, Input } from 'antd'
 import Helmet from 'react-helmet'
 // import theme from '../theme'
-import Link from '../components/Link'
 // const { Option } = Select
 // const { SubMenu } = Menu
 // const { Search } = Input
@@ -20,7 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Paper from '@material-ui/core/Paper'
 import Divider from '@material-ui/core/Divider'
-import { fade, makeStyles } from '@material-ui/core/styles'
+import { fade, makeStyles, useTheme } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import FindInPageIcon from '@material-ui/icons/FindInPage'
 import clsx from 'clsx'
@@ -28,6 +25,9 @@ import clsx from 'clsx'
 import SearchIcon from '@material-ui/icons/Search'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import lightBlue from '@material-ui/core/colors/lightBlue'
+import Link from '../components/Link'
+import Tags from '../components/Tags'
+import Layout from '../components/Layout'
 
 import scrollbarStyle from '../styles/scrollbar'
 
@@ -163,7 +163,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     // alignItems: 'center',
     // justifyContent: 'center',
-
   },
   dialogHeader: {
     display: 'block',
@@ -192,17 +191,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-
 function SearchResultList (props) {
   const { result, isFirstRun, searchKey, classes } = props
   // const resultCount = result.
-  const resultCount = 5;
+  const resultCount = 5
   const res_new = [
-    {title: "AAGAN - Enhanced Single Image Dehazing With Attention-to-Attention Generative Adversarial Network.", highlight: "https://doi.org/10.1109/ACCESS.2019.2957057"},
-    {title: "Hemifield-specific Correlations between Cue-related Blood Oxygen Level Dependent Activity in Bilateral Nodes of the Dorsal Attention Network and Attentional Benefits in a Spatial Orienting Paradigm.", highlight: "https://doi.org/10.1162/jocn_a_01338"},
-    {title: "Is It Worth the Attention? A Comparative Evaluation of Attention Layers for Argument Unit Segmentation.", highlight: "https://doi.org/10.18653/v1/w19-4509"},
-    {title: "AttentionDTA - prediction of drug-target binding affinity using attention model.", highlight: "https://doi.org/10.1109/BIBM47256.2019.8983125"},
-    {title: "Paying More Attention to Attention - Improving the Performance of Convolutional Neural Networks via Attention Transfer.", highlight: "https://openreview.net/forum?id=Sks9_ajex"},
+    {
+      title:
+        'AAGAN - Enhanced Single Image Dehazing With Attention-to-Attention Generative Adversarial Network.',
+      highlight: 'https://doi.org/10.1109/ACCESS.2019.2957057',
+    },
+    {
+      title:
+        'Hemifield-specific Correlations between Cue-related Blood Oxygen Level Dependent Activity in Bilateral Nodes of the Dorsal Attention Network and Attentional Benefits in a Spatial Orienting Paradigm.',
+      highlight: 'https://doi.org/10.1162/jocn_a_01338',
+    },
+    {
+      title:
+        'Is It Worth the Attention? A Comparative Evaluation of Attention Layers for Argument Unit Segmentation.',
+      highlight: 'https://doi.org/10.18653/v1/w19-4509',
+    },
+    {
+      title:
+        'AttentionDTA - prediction of drug-target binding affinity using attention model.',
+      highlight: 'https://doi.org/10.1109/BIBM47256.2019.8983125',
+    },
+    {
+      title:
+        'Paying More Attention to Attention - Improving the Performance of Convolutional Neural Networks via Attention Transfer.',
+      highlight: 'https://openreview.net/forum?id=Sks9_ajex',
+    },
   ]
   return resultCount !== 0 ? (
     <>
@@ -230,7 +248,7 @@ function SearchResultList (props) {
                     variant="h6"
                     className={classes.searchResultPrimary}
                     dangerouslySetInnerHTML={{
-                      __html: item.title
+                      __html: item.title,
                     }}
                   />
                 }
@@ -238,7 +256,7 @@ function SearchResultList (props) {
                   <div
                     className={classes.searchResultSecondary}
                     dangerouslySetInnerHTML={{
-                      __html: item.highlight
+                      __html: item.highlight,
                     }}
                   />
                 }
@@ -249,7 +267,7 @@ function SearchResultList (props) {
       </List>
     </>
   ) : !isFirstRun.current ? (
-    <Typography variant={'body1'} className={classes.searchMessage}>
+    <Typography variant="body1" className={classes.searchMessage}>
       没有找到符合条件的结果
     </Typography>
   ) : (
@@ -346,12 +364,7 @@ function Search ({ backdrop }) {
   if (width > 600) {
     return (
       <>
-        <div
-          className={clsx(
-            classes.search,
-            classes.searchColorWhite,
-          )}
-        >
+        <div className={clsx(classes.search, classes.searchColorWhite)}>
           <div className={classes.searchIcon}>
             <SearchIcon fontSize="small" />
           </div>
@@ -388,9 +401,13 @@ function Search ({ backdrop }) {
   } else {
     return (
       <>
-
         {/* <div  > */}
-        <IconButton onClick={() => { setOpen(true) }} className={classes.smallScreenSearchIcon}>
+        <IconButton
+          onClick={() => {
+            setOpen(true)
+          }}
+          className={classes.smallScreenSearchIcon}
+        >
           <SearchIcon />
         </IconButton>
         {/* </div> */}
@@ -401,14 +418,16 @@ function Search ({ backdrop }) {
           }}
           fullWidth={true}
           fullScreen
-
         >
           <Paper component="div" className={classes.dialogHeader}>
-
             {/* <div > */}
-            <IconButton className={classes.smallScreenReturnIcon} onClick={() => { setOpen(false) }} >
+            <IconButton
+              className={classes.smallScreenReturnIcon}
+              onClick={() => {
+                setOpen(false)
+              }}
+            >
               <ArrowBackIcon />
-
             </IconButton>
             {/* </div> */}
             <TextField
@@ -444,19 +463,179 @@ function Search ({ backdrop }) {
   }
 }
 
+function ExampleComponent () {
+  // const classes = useStyles()
+  return (
+    <>
+      <Divider
+        style={{
+          marginTop: '20px',
+          marginBottom: '20px',
+        }}
+      />
+      <Paper
+        variant="outlined"
+        style={{
+          marginTop: '20px',
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="a"
+          href="/journals/jss/YangZGZ013/"
+          style={{
+            display: 'block',
+            marginLeft: '20px',
+            marginTop: '20px',
+            marginBottom: '20px',
+
+            color: lightBlue[500],
+            textDecoration: 'none',
+            ':hover': {
+              textDecoration: 'none',
+            },
+            '&.active': {
+              color: '#FFF',
+            },
+          }}
+        >
+          Lifetime and QoS-aware energy-saving buffering schemes
+        </Typography>
+      </Paper>
+      <Paper
+        variant="outlined"
+        style={{
+          marginTop: '20px',
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="a"
+          href="/journals/titb/HuangCBDCGMZZJX14/"
+          style={{
+            display: 'block',
+            marginLeft: '20px',
+            marginTop: '20px',
+            marginBottom: '20px',
+
+            color: lightBlue[500],
+            textDecoration: 'none',
+            ':hover': {
+              textDecoration: 'none',
+            },
+            '&.active': {
+              color: '#FFF',
+            },
+          }}
+        >
+          WE-CARE: An Intelligent Mobile Telecardiology System to Enable mHealth
+          Applications
+        </Typography>
+      </Paper>
+      <Paper
+        variant="outlined"
+        style={{
+          marginTop: '20px',
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="a"
+          href="/journals/wpc/TongTZBY19/"
+          style={{
+            display: 'block',
+            marginLeft: '20px',
+            marginTop: '20px',
+            marginBottom: '20px',
+
+            color: lightBlue[500],
+            textDecoration: 'none',
+            ':hover': {
+              textDecoration: 'none',
+            },
+            '&.active': {
+              color: '#FFF',
+            },
+          }}
+        >
+          Trajectory-Based User Encounter Prediction Over Wireless Sensor
+          Networks
+        </Typography>
+      </Paper>
+      <Paper
+        variant="outlined"
+        style={{
+          marginTop: '20px',
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="a"
+          href="/author/87/2334/"
+          style={{
+            display: 'block',
+            marginLeft: '20px',
+            marginTop: '20px',
+            marginBottom: '20px',
+
+            color: lightBlue[500],
+            textDecoration: 'none',
+            ':hover': {
+              textDecoration: 'none',
+            },
+            '&.active': {
+              color: '#FFF',
+            },
+          }}
+        >
+          边凯归
+        </Typography>
+      </Paper>
+      <Paper
+        variant="outlined"
+        style={{
+          marginTop: '20px',
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="a"
+          href="/author/c/LijunChen2/"
+          style={{
+            display: 'block',
+            marginLeft: '20px',
+            marginTop: '20px',
+            marginBottom: '20px',
+
+            color: lightBlue[500],
+            textDecoration: 'none',
+            ':hover': {
+              textDecoration: 'none',
+            },
+            '&.active': {
+              color: '#FFF',
+            },
+          }}
+        >
+          陈立军
+        </Typography>
+      </Paper>
+    </>
+  )
+}
+
 //
-function BlogIndex ({
-  data,
-  location,
-  children = [],
-  posts,
-  group,
-}) {
-  const classes = useStyles()
+function BlogIndex ({ data, location, children = [], posts, group }) {
+  // const theme = useTheme()
+  // const theme = useTheme()
+  // const classes = useStyles()
   return (
     <Layout location="/" noMeta="true" hasSearch={false}>
       <Helmet title="PKU Scholar"></Helmet>
-      <Typography variant="h2" component="h2" align='center'> Welcome to PKU Scholar </Typography>
+      <Typography variant="h2" component="h2" align="center">
+        {' '}
+        Welcome to PKU Scholar{' '}
+      </Typography>
       {/* <div>
           <ul>
             <li>
@@ -473,32 +652,7 @@ function BlogIndex ({
           onSearch={value =>  value}
           style={{ 'margin-top': 50, 'margin-bottom': 300 }}
         /> */}
-      <Divider className={classes.divider} />
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/journals/jss/YangZGZ013/" className={classes.example}>
-        Lifetime and QoS-aware energy-saving buffering schemes
-        </Typography>
-      </Paper>
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/journals/titb/HuangCBDCGMZZJX14/" className={classes.example}>
-        WE-CARE: An Intelligent Mobile Telecardiology System to Enable mHealth Applications
-        </Typography>
-      </Paper>
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/journals/wpc/TongTZBY19/" className={classes.example}>
-        Trajectory-Based User Encounter Prediction Over Wireless Sensor Networks
-        </Typography>
-      </Paper>
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/author/87/2334/" className={classes.example}>
-        边凯归
-        </Typography>
-      </Paper>
-      <Paper variant="outlined" className={classes.paperRoot}>
-        <Typography variant="h6" component="a" href="/author/c/LijunChen2/" className={classes.example}>
-        陈立军
-        </Typography>
-      </Paper>
+      <ExampleComponent />
     </Layout>
   )
 }

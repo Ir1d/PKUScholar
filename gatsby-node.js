@@ -121,7 +121,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      papersGroup: allPapersJson {
+      papersGroup: allPapersJson (limit: 20) {
         edges {
           node {
             article_key

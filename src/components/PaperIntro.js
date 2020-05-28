@@ -29,7 +29,7 @@ function PaperIntro ({ link, year, bibtex, authors_key }) {
         <Grid item xs={12}>
           <Paper className={classes.paper} variant="outlined"
           >
-            <Chip component={'a'} href={link} label={link} key="link" clickable variant="outlined"></Chip>
+            <Chip component="a" href={link} label={link} key="link" clickable variant="outlined"></Chip>
             {/* <Chip label={year} key="year"></Chip> */}
             {/* <Chip label={venue} key="venue" variant="outlined"></Chip> */}
             {/* <Chip label={year} key="year" variant="outlined"></Chip> */}

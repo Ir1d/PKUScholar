@@ -84,7 +84,7 @@ function ResponsiveDrawer (props) {
           >
             <MenuIcon />
           </IconButton> */}
-          <Hidden mdDown implementation={'css'}>
+          <Hidden mdDown implementation="css">
             <IconButton component={Link} color="inherit" to="/">
               <SchoolIcon />
             </IconButton>
@@ -97,7 +97,7 @@ function ResponsiveDrawer (props) {
           <div style={{ flexGrow: 1 }} />
           {hasSearch && <Search />}
           <Tooltip title="作者页" placement="bottom" arrow>
-            <IconButton component={'a'} href={'/authors'} color={'inherit'}>
+            <IconButton component="a" href="/authors" color="inherit">
               <PeopleAltIcon />
             </IconButton>
           </Tooltip>
@@ -107,7 +107,7 @@ function ResponsiveDrawer (props) {
             </IconButton>
           </Tooltip> */}
           <Tooltip title="GitHub 存储库" placement="bottom" arrow>
-            <IconButton component={'a'} href={OIWikiGithub} color={'inherit'}>
+            <IconButton component="a" href={OIWikiGithub} color="inherit">
               <GitHubIcon />
             </IconButton>
           </Tooltip>

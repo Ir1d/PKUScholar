@@ -13,7 +13,7 @@ function mdx ({ data: { mdx }, location }) {
   const link = mdx.ee || 'false'
   const year = mdx.year || 'false'
   const venue = mdx.venue || 'false'
-  const bibtex = mdx.bib_text || "false"
+  const bibtex = mdx.bib_text || 'false'
   const authors_key = mdx.author_keys || null
   const toc = mdx.toc || null
   // console.log(mdx)

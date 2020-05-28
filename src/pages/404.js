@@ -8,7 +8,7 @@ import Layout from '../components/Layout'
 const page = location => (
   <Layout location={location}>
     <div>
-      <Helmet title={'404 Page'} />
+      <Helmet title="404 Page" />
       <div>
         <h1>404 is Found</h1>
         <p>你是从哪里点进来的呢？</p>

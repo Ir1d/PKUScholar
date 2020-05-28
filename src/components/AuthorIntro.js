@@ -68,7 +68,7 @@ function AuthorIntro ({ cn_name, intro, img_src, homePage }) {
             )} */}
             {homePage !== '' ? (
               // <a href={homePage} target="_blank">
-                <Chip variant="outlined" label={'学院主页：' + homePage} key={'homePage'}></Chip>
+              <Chip variant="outlined" label={'学院主页：' + homePage} key="homePage"></Chip>
               // </a>
             ) : (
               ''

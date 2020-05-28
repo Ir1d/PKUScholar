@@ -33,13 +33,13 @@ const editWarning = (
     <p>首先，感谢您能够为 PKU Scholar 做出自己的贡献。</p>
     <p>
       不过在开始之前，我们需要您了解并熟知
-      <Link to={'https://oi-wiki.com/intro/htc/'}>如何参与</Link>
+      <Link to="https://oi-wiki.com/intro/htc/">如何参与</Link>
       里的内容，以避免在编辑时产生不必要的麻烦。
     </p>
     <p>在阅读完之后，请点击下方的按钮，然后开始编辑。</p>
   </DialogContentText>
 )
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   toolbar: {
     [theme.breakpoints.down('md')]: {
       minHeight: 64,
@@ -126,7 +126,7 @@ function myLayout ({
         setDialogOpen(false)
       }}
     >
-      <DialogTitle>{'编辑前须知'}</DialogTitle>
+      <DialogTitle>编辑前须知</DialogTitle>
       <DialogContent>{editWarning}</DialogContent>
       <DialogActions>
         <Button
@@ -158,7 +158,7 @@ function myLayout ({
         <meta name="description" content={descriptionRes} />
       </Helmet>
       {EditingDialog}
-      <NavAndDrawer pathname={location.pathname} hasSearch={displaySearch}/>
+      <NavAndDrawer pathname={location.pathname} hasSearch={displaySearch} />
       <Grid container>
         <Grid
           item
@@ -205,7 +205,7 @@ function myLayout ({
                 ></Meta>
                 {noComment === 'false' && (
                   <div style={{ width: '100%', marginTop: theme.spacing(2) }}>
-                    <ExpansionPanel variant={'outlined'}>
+                    <ExpansionPanel variant="outlined">
                       <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="comment"
@@ -234,9 +234,9 @@ function myLayout ({
       </Grid>
       <Divider />
       <div className={classes.footer}>
-        <Footer />
+        <Footer location={location} />
       </div>
-      <BackTop />
+      {location !== '/' ? <BackTop /> : ''}
     </>
   )
 }

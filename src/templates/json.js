@@ -1,10 +1,10 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react'
+import { Link } from 'gatsby'
 const basicTemplate = props => {
   const { pageContext } = props
   const { pageContent, links } = pageContext
   return (
-    <div style={{ maxWidth: `960px`, margin: `1.45rem` }}>
+    <div style={{ maxWidth: '960px', margin: '1.45rem' }}>
       <ul>
         {pageContent.map((data, index) => {
           return <li key={`content_item_${index}`}>{data.item}</li>

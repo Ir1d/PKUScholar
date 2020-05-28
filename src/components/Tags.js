@@ -23,7 +23,7 @@ function Tags ({ tags }) {
       <Header num={arr ? arr.length : 0}></Header>
       {arr
         ? arr.map(tag => (
-          <Chip clickable href={'/tag/' + kebabCase(tag)} key={`tag-${tag}`} variant="outlined" label={'tag-item'} label={` ${tag} `} component={'a'} className={classes.chip}></Chip>
+          <Chip clickable href={'/tag/' + kebabCase(tag)} key={`tag-${tag}`} variant="outlined" label="tag-item" label={` ${tag} `} component="a" className={classes.chip}></Chip>
         ))
         : ''}
     </div>

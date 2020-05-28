@@ -1,5 +1,5 @@
-import Link from './Link'
 import React from 'react'
+import Link from './Link'
 
 function AuthorPapers ({ papers, cn_name }) {
   const { edges, totalCount } = papers

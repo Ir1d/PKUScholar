@@ -157,13 +157,13 @@ const useStyles = makeStyles((theme) => ({
 function SearchResultList (props) {
   const { result, isFirstRun, searchKey, classes } = props
   // const resultCount = result.
-  const resultCount = 5;
+  const resultCount = 5
   const res_new = [
-    {title: "AAGAN - Enhanced Single Image Dehazing With Attention-to-Attention Generative Adversarial Network.", highlight: "https://doi.org/10.1109/ACCESS.2019.2957057"},
-    {title: "Hemifield-specific Correlations between Cue-related Blood Oxygen Level Dependent Activity in Bilateral Nodes of the Dorsal Attention Network and Attentional Benefits in a Spatial Orienting Paradigm.", highlight: "https://doi.org/10.1162/jocn_a_01338"},
-    {title: "Is It Worth the Attention? A Comparative Evaluation of Attention Layers for Argument Unit Segmentation.", highlight: "https://doi.org/10.18653/v1/w19-4509"},
-    {title: "AttentionDTA - prediction of drug-target binding affinity using attention model.", highlight: "https://doi.org/10.1109/BIBM47256.2019.8983125"},
-    {title: "Paying More Attention to Attention - Improving the Performance of Convolutional Neural Networks via Attention Transfer.", highlight: "https://openreview.net/forum?id=Sks9_ajex"},
+    { title: 'AAGAN - Enhanced Single Image Dehazing With Attention-to-Attention Generative Adversarial Network.', highlight: 'https://doi.org/10.1109/ACCESS.2019.2957057' },
+    { title: 'Hemifield-specific Correlations between Cue-related Blood Oxygen Level Dependent Activity in Bilateral Nodes of the Dorsal Attention Network and Attentional Benefits in a Spatial Orienting Paradigm.', highlight: 'https://doi.org/10.1162/jocn_a_01338' },
+    { title: 'Is It Worth the Attention? A Comparative Evaluation of Attention Layers for Argument Unit Segmentation.', highlight: 'https://doi.org/10.18653/v1/w19-4509' },
+    { title: 'AttentionDTA - prediction of drug-target binding affinity using attention model.', highlight: 'https://doi.org/10.1109/BIBM47256.2019.8983125' },
+    { title: 'Paying More Attention to Attention - Improving the Performance of Convolutional Neural Networks via Attention Transfer.', highlight: 'https://openreview.net/forum?id=Sks9_ajex' },
   ]
   return resultCount !== 0 ? (
     <>
@@ -191,7 +191,7 @@ function SearchResultList (props) {
                     variant="h6"
                     className={classes.searchResultPrimary}
                     dangerouslySetInnerHTML={{
-                      __html: item.title
+                      __html: item.title,
                     }}
                   />
                 }
@@ -199,7 +199,7 @@ function SearchResultList (props) {
                   <div
                     className={classes.searchResultSecondary}
                     dangerouslySetInnerHTML={{
-                      __html: item.highlight
+                      __html: item.highlight,
                     }}
                   />
                 }
@@ -210,7 +210,7 @@ function SearchResultList (props) {
       </List>
     </>
   ) : !isFirstRun.current ? (
-    <Typography variant={'body1'} className={classes.searchMessage}>
+    <Typography variant="body1" className={classes.searchMessage}>
       没有找到符合条件的结果
     </Typography>
   ) : (

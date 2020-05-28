@@ -47,7 +47,7 @@ function Item (props, padding, pathname) {
       >
         <ListItemText
           primary={
-            <Typography variant={'body2'} component={'span'}>
+            <Typography variant="body2" component="span">
               {key}
             </Typography>
           }
@@ -75,7 +75,7 @@ function Item (props, padding, pathname) {
       >
         <ListItemText
           primary={
-            <Typography variant={'body2'} component={'span'}>
+            <Typography variant="body2" component="span">
               {key}
             </Typography>
           }
