@@ -193,42 +193,42 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchResultList (props) {
   const { result, isFirstRun, searchKey, classes } = props
-  // const resultCount = result.
-  const resultCount = 5
-  const res_new = [
-    {
-      title:
-        'AAGAN - Enhanced Single Image Dehazing With Attention-to-Attention Generative Adversarial Network.',
-      highlight: 'https://doi.org/10.1109/ACCESS.2019.2957057',
-    },
-    {
-      title:
-        'Hemifield-specific Correlations between Cue-related Blood Oxygen Level Dependent Activity in Bilateral Nodes of the Dorsal Attention Network and Attentional Benefits in a Spatial Orienting Paradigm.',
-      highlight: 'https://doi.org/10.1162/jocn_a_01338',
-    },
-    {
-      title:
-        'Is It Worth the Attention? A Comparative Evaluation of Attention Layers for Argument Unit Segmentation.',
-      highlight: 'https://doi.org/10.18653/v1/w19-4509',
-    },
-    {
-      title:
-        'AttentionDTA - prediction of drug-target binding affinity using attention model.',
-      highlight: 'https://doi.org/10.1109/BIBM47256.2019.8983125',
-    },
-    {
-      title:
-        'Paying More Attention to Attention - Improving the Performance of Convolutional Neural Networks via Attention Transfer.',
-      highlight: 'https://openreview.net/forum?id=Sks9_ajex',
-    },
-  ]
+  const resultCount = result.length
+  // const resultCount = 5
+  // const res_new = [
+  //   {
+  //     title:
+  //       'AAGAN - Enhanced Single Image Dehazing With Attention-to-Attention Generative Adversarial Network.',
+  //     highlight: 'https://doi.org/10.1109/ACCESS.2019.2957057',
+  //   },
+  //   {
+  //     title:
+  //       'Hemifield-specific Correlations between Cue-related Blood Oxygen Level Dependent Activity in Bilateral Nodes of the Dorsal Attention Network and Attentional Benefits in a Spatial Orienting Paradigm.',
+  //     highlight: 'https://doi.org/10.1162/jocn_a_01338',
+  //   },
+  //   {
+  //     title:
+  //       'Is It Worth the Attention? A Comparative Evaluation of Attention Layers for Argument Unit Segmentation.',
+  //     highlight: 'https://doi.org/10.18653/v1/w19-4509',
+  //   },
+  //   {
+  //     title:
+  //       'AttentionDTA - prediction of drug-target binding affinity using attention model.',
+  //     highlight: 'https://doi.org/10.1109/BIBM47256.2019.8983125',
+  //   },
+  //   {
+  //     title:
+  //       'Paying More Attention to Attention - Improving the Performance of Convolutional Neural Networks via Attention Transfer.',
+  //     highlight: 'https://openreview.net/forum?id=Sks9_ajex',
+  //   },
+  // ]
   return resultCount !== 0 ? (
     <>
       <Typography variant="body1" className={classes.searchMessage}>
-        共找到 5 条搜索结果：
+        共找到 {resultCount} 条搜索结果：
       </Typography>
       <List>
-        {res_new.map((item) => {
+        {result.map((item) => {
           /* Render article */
           return (
             <ListItem
@@ -333,7 +333,7 @@ function Search ({ backdrop }) {
   useEffect(() => {
     if (searchKey !== '') {
       const result = fetch(
-        `https://search.oi-wiki.org:8443/?s=${encodeURIComponent(searchKey)}`,
+        `http://pku.oi-wiki.com:8443/?s=${encodeURIComponent(searchKey)}`,
         {
           // credentials: "same-origin"
         },
