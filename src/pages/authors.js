@@ -11,7 +11,7 @@ const AuthorsPage = ({ data, location }) => {
   const group = data.allMdx.nodes
   return (
     <Layout location={location} noMeta="true">
-      <Helmet title="作者页 - OI Wiki"></Helmet>
+      <Helmet title="作者页 - PKU Scholar"></Helmet>
       <div>
         <h1>Authors</h1>
         <ul>

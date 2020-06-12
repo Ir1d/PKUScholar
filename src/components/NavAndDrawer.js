@@ -14,6 +14,7 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt'
 import MenuIcon from '@material-ui/icons/Menu'
+import BlurOnIcon from '@material-ui/icons/BlurOn'
 import SchoolIcon from '@material-ui/icons/School'
 
 import scrollbarStyle from '../styles/scrollbar'
@@ -99,6 +100,11 @@ function ResponsiveDrawer (props) {
           <Tooltip title="作者页" placement="bottom" arrow>
             <IconButton component="a" href="/authors" color="inherit">
               <PeopleAltIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="统计图表" placement="bottom" arrow>
+            <IconButton component="a" href="/chart.html" color="inherit">
+              <BlurOnIcon />
             </IconButton>
           </Tooltip>
           {/* <Tooltip title="文章页" placement="bottom" arrow>
