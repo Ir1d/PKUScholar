@@ -1,0 +1,31 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "21:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: gatsby-plugin-webpack-bundle-analyser-v2
+    versions:
+    - 1.1.13
+    - 1.1.20
+  - dependency-name: gatsby-remark-images
+    versions:
+    - 3.8.1
+  - dependency-name: lint-staged
+    versions:
+    - 10.5.3
+  - dependency-name: gatsby-source-filesystem
+    versions:
+    - 2.3.37
+  - dependency-name: gatsby-plugin-mdx
+    versions:
+    - 1.2.52
+  - dependency-name: gatsby-plugin-manifest
+    versions:
+    - 2.4.33
+  - dependency-name: elliptic
+    versions:
+    - 6.5.3
